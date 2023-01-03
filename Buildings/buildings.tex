@@ -1,5 +1,6 @@
 \documentclass[12pt]{article}
 \usepackage{amsmath}
+\usepackage{graphicx}
 \begin{document}
 \newtheorem{definition}{Definition}
 \newtheorem{theorem}{Theorem}
@@ -43,9 +44,13 @@
 \begin{definition}
     The Cayley graph Cay(G,S) of a group $G$ with respect to a generating set $S$, $1\notin S$, is the graph $(V,E)$, with $V=G$, and directed edges
     \[E=\{(g,gs)|g\in G, s\in S\}.\]
-    If $s\in S$ is an involution, we  
+    If $s\in S$ is an involution, we only put a single undirected edge between $g$ and $gs$, and label the edge $s$. 
 \end{definition}
 
+\begin{example}
+    The Cayley graph 
+    \includegraphics[scale=0.4]{Screenshot 2023-01-03 at 12.40.32.png}
+\end{example}
 \section{Reflection systems}
 \begin{definition}
     Let $G$ be a group. A pre-reflection system for $G$ is a pair $(X,R)$. $X$ is a connected simplicial graph which is acted upon by $G$, and $R$ is a subset of $G$. This must satisfy

@@ -1,6 +1,7 @@
 \documentclass[12pt]{article}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{amsfonts}
 \begin{document}
 \newtheorem{definition}{Definition}
 \newtheorem{theorem}{Theorem}
@@ -115,7 +116,20 @@
 \end{theorem}
 
 
+\section{Tits' Representation Theorem}
+\begin{theorem}
+    (Tits' Representation Theorem) Let $(W,S)$ be a Coxeter system. Then there is a map
+    \[\rho : W \longrightarrow GL(N,\mathbb{R})\]
+    which is a faithful representation, with $N=|S|$, such that
+    \begin{enumerate}
+        \item $\sigma_i = \rho (s_i)$ is a linear involution, whose fixed set is a hyperplane; and 
+        \item If $s_i,s_j\in S$ are distinct, then $\sigma_i\sigma_j$ has order $m_{ij}$.  
+    \end{enumerate}
+\end{theorem}
 
+\begin{definition}
+    The representation $\rho$ above is called the Tits representation, or sometimes the standard geometric representation. 
+\end{definition}
 
 
 

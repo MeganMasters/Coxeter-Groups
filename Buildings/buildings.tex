@@ -6,6 +6,7 @@
 \newtheorem{definition}{Definition}
 \newtheorem{theorem}{Theorem}
 \newtheorem{example}{Example}
+\newtheorem{lemma}{Lemma}
 
 \section{Buildings}
 \begin{definition}
@@ -131,10 +132,36 @@
     The representation $\rho$ above is called the Tits representation, or sometimes the standard geometric representation. 
 \end{definition}
 
+\subsection{Corollaries}
 
+\bigbreak
 
+\section{Construction of a geometric realisation}
 
+\begin{definition}
+    Let $V$ be a, possibly infinite, set, called the vertex set. Let $X$ be a collection of finite subsets of $V$ such that 
+    \begin{enumerate}
+        \item $\{v\}\in X$ for all elements $v\in V$; and
+        \item if $\Delta \in X$ and $\Delta'$ is a subset of $\Delta$, then $\Delta'$ is in $X$.
+    \end{enumerate}
+    Then $(V,X)$ is an abstract simplicial complex.
+\end{definition}
 
+\begin{definition}
+    A simplex is any element of $X$. A simplex $\Delta$ has dimension 
+    \[\dim \Delta = |\Delta| -1.\]
+    A simplex of dimension $k$ is called a k-simplex. A 0-simplex is called a vertex, and a 1-simplex is called an edge, intuitively. The set of all simplices of dimension k is the k-skeleton $X^{(k)}.$ 
+\end{definition}
+
+\begin{lemma}
+    The k-skeleton is also a simplicial complex. 
+\end{lemma}
+
+\begin{definition}
+    The dimension of $X$ is
+    \[\dim X = max\{\dim(\Delta)\\Delta \in X\}.\]
+    If all the maximal elements of $X$ have the same dimension, then the simplicial complex is pure. 
+\end{definition}
 
 
 

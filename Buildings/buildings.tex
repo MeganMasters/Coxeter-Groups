@@ -38,4 +38,29 @@
     \]
     This Coxeter group is isomorphic to $D_4$. 
 \end{example}
+
+\section{Cayley graphs}
+\begin{definition}
+    The Cayley graph Cay(G,S) of a group $G$ with respect to a generating set $S$, $1\notin S$, is the graph $(V,E)$, with $V=G$, and directed edges
+    \[E=\{(g,gs)|g\in G, s\in S\}.\]
+    If $s\in S$ is an involution, we  
+\end{definition}
+
+\section{Reflection systems}
+\begin{definition}
+    Let $G$ be a group. A pre-reflection system for $G$ is a pair $(X,R)$. $X$ is a connected simplicial graph which is acted upon by $G$, and $R$ is a subset of $G$. This must satisfy
+    \begin{enumerate}
+        \item every element of $R$ is an involution;
+        \item R is closed under conjugation;
+        \item R generates G;
+        \item given an edge of $X$, there is a unique element of $R$ which flips the edge; and
+        \item for every element $r$ of $R$, there is at least one edge of $X$ which is flipped by $r$. 
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+    Let $(W,S)$ be any Coxeter system. Let $X$ be the Cayley graph of $(W,S)$, and let
+    \[ R=\{wsw^{-1}|w\in W, s\in S\}. \]
+    Then $(X,R)$ is a pre-reflection system.
+\end{example}
 \end{document}

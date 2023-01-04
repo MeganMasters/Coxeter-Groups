@@ -7,7 +7,7 @@
 \newtheorem{theorem}{Theorem}
 \newtheorem{example}{Example}
 \newtheorem{lemma}{Lemma}
-
+\tableofcontents
 \section{Buildings}
 \begin{definition}
   A Polyhedral complex is a certain finite dimensional CW-complex. Each n-cell of the polyhedral complex is   
@@ -162,7 +162,10 @@
     \[\dim X = max\{\dim(\Delta)\\Delta \in X\}.\]
     If all the maximal elements of $X$ have the same dimension, then the simplicial complex is pure. 
 \end{definition}
-
+\begin{definition}
+    The standard n-simplex $\Delta^n$ is the convex hull of the $(n+1)$ points $(1,0,...,0),...,(0,...,0,1)$ in $\mathbb{R}^{n+1}$.
+\end{definition}
+Given an n-simplex $\Delta$ in $X$, we can identify $\Delta$ with a copy of $\Delta^n$. 
 \subsection{The basic construction}
 \begin{definition}
     Let $X$ be a connected Hausdorff topological space. Let $(W,S)$ be a Coxeter system. Let $(X_s)_{s\in X}$ be a collection of non-empty, closed subspaces of $X$. Then $(X_s)_{s\in X}$ is a mirror structure on X over S, and $X_s$ is called the s-mirror. 

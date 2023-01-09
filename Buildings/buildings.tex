@@ -218,10 +218,37 @@ Now we will denote by $[w,x]$ the equivalence class of $(w,x)$, and we will writ
         \emptyset, & \text{if } x\notin \{\sigma_s,\sigma_t,\sigma_u\},\\
         \{s\}, \{t\}, \{u\} & \text{if } x=\sigma_s,\sigma_t,\sigma_u \text{ resp.}
     \end{cases}\]
+    So $W_{S(x)}$ is one of $1, \{1,s\},\{1,t\},$ or $\{1,u\}$. 
+\end{example}
+
+\begin{definition}
+    Let $(W,S)$ be a Coxeter system. Let $X$ be a simplex with codimension-one faces $\{\Sigma_s|s\in S\}$. Then $\uw$ is called the Coxeter complex.
+\end{definition}
+
+\subsection{Properties of $\uw$}
+\begin{lemma}
+    As a topological space ,$\uw$ is connected.
+\end{lemma}
+
+\begin{definition}
+    We define  $\uw$ as locally finite if, given $[w,x]\in\uw$, we can find an open neighbourhood of $[w,x]$ which meets only a finite number of chambers.
+\end{definition}
+
+\begin{lemma}
+    The following are equivalent:
+    \begin{enumerate}
+        \item $\uw$ is locally finite;
+        \item given any $x\in X$, $W_{S(x)}$ is finite;
+        \item Given any $T\subset S$ such that its special subgroup $W_T$ is infinite, we have $\cap_{x\in T}X_t=\emptyset.$
+    \end{enumerate}
+\end{lemma}
+
+\begin{example}
+    Let $W=\langle s,t,u|s^2=t^2=u^2=1,(st)^3=(tu)^3=(us)^3=1\rangle$. The Coxeter complex of $W$ is not locally finite. 
 \end{example}
 
 
-
+\subsection{Action of W on $\uw$}
 
 
 

@@ -1,12 +1,15 @@
 \documentclass[12pt]{article}
 \usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage{graphicx}
 \usepackage{amsfonts}
+\usepackage{xcolor}
 \begin{document}
 \newtheorem{definition}{Definition}
 \newtheorem{theorem}{Theorem}
 \newtheorem{example}{Example}
 \newtheorem{lemma}{Lemma}
+\newcommand{\uw}{\mathcal{U}(W,X)}
 \tableofcontents
 \section{Buildings}
 \begin{definition}
@@ -172,12 +175,50 @@ Given an n-simplex $\Delta$ in $X$, we can identify $\Delta$ with a copy of $\De
 \end{definition}
 
 \begin{example}
-    
+    Consider the cone with $|S|$ vertices. This is the graph with a node in the centre, and a branch for each element in $|S|$. Label the vertices $\{\sigma_s|s\in S\}$. Then we can set $X_s=\sigma_s$. This means that we take, for each element of $S$, the closed set of a single point as the $s$-mirror.
+    \center{\includegraphics[scale=0.4]{Screenshot 2023-01-09 at 12.31.42.png}}
 \end{example}
 
+\begin{example}
+    Consider the $n$-simplex, with $n=|S|-1$. Let $\{\Sigma_s|s\in S\}$ be the codimension-one faces. Now let $X_s=\Sigma_s$. This means that we take, for every element of $S$, a codimension-one element of the simplex as the $s$-mirror.
+    \center{\includegraphics[scale=0.6]{Screenshot 2023-01-09 at 16.14.41.png}}
+\end{example}
 
+\begin{definition}
+    For each $x\in X$, define the set
+    \[S(x):=\{s\in S|x\in X_s\}.\]
+\end{definition}
 
+\begin{example}
+    From example 5, we have
+    \[S(x)=\begin{cases}\emptyset, & \text{if } x\notin \{\sigma_s|s\in S\},\\
+        \{s\}, & \text{if } x=\sigma_s.
+    \end{cases}\]
+\end{example}
 
+\begin{example}
+    From example 6, we have
+    \[\]
+\end{example}
+
+We now want to define an equivalence relation on $W\times X$. 
+\begin{definition}
+    $(w,x)$ is equivalent to $(w'x')$, i.e $(w,x)\sim (w'x')$, if and only if $x=x'$ and $w^{-1}w'\in W_{S(x)}.$  
+\end{definition}
+
+Now we want to equip our group $W$ with the discrete topology, and then $W\times X$ with the product topology. Then we define
+\[\mathcal{U}(W,X)=W\times X/\sim.\]
+Now we will denote by $[w,x]$ the equivalence class of $(w,x)$, and we will write $wX$ for the image of $\{w\}\times X$ in $\uw$. Now this must be well-defined, as $x\mapsto [w,x]$ is an embedding. We call each $wX$ a chamber. 
+
+\begin{example}
+    Let $W$ be the $(3,3,3)$-triangle group, i.e
+    \[W=\langle s,t,u|s^2=t^2=u^2=1,(st)^3=(tu)^3=(us)^3=1\rangle.\]
+    Now we let our topological space be $X=Cone\{\sigma_s,\sigma_t,\sigma_u\}$. So we have
+    \[S(x)=\begin{cases}
+        \emptyset, & \text{if } x\notin \{\sigma_s,\sigma_t,\sigma_u\},\\
+        \{s\}, \{t\}, \{u\} & \text{if } x=\sigma_s,\sigma_t,\sigma_u \text{ resp.}
+    \end{cases}\]
+\end{example}
 
 
 

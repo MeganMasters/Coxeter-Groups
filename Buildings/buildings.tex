@@ -250,6 +250,40 @@ Now we will denote by $[w,x]$ the equivalence class of $(w,x)$, and we will writ
 
 \subsection{Action of W on $\uw$}
 
+We note that $W$ acts naturally on $W\times X$ by $w'\cdot(w,x)=(w'w,x)$. 
+
+\begin{lemma}
+    $W$ acts on $\uw$ by $w'\cdot[w,x]=[w'w,x].$
+\end{lemma}
+
+We note that this action also induces an action on the set of chambers. On the set of chambers, this action is transitive, and is free if there is a point $x\in X$ which is not contained in any mirror. 
+
+Now for the point $[w,x]\in\uw$, its stabiliser is $wW_{S(x)}w^{-1}$. 
+
+\begin{definition}
+    Let $G$ be a discrete group, and let $Y$ be a Hausdorff space. An action by homeomorphisms of $G$ on $Y$ is properly discontinuous if 
+    \begin{enumerate}
+        \item $Y/G$ is Hausdorff;
+        \item for any $y\in Y$, $G_y=$stab$_G(Y)$ is finite;
+        \item for any $y\in Y$, we can find an open nieghbourhood $U_y$ of $y$ such that $U_y$ is stabilised by $G_y$, and $gU_y\cap U_y=\emptyset$ for all $g\in G\backslash G_y$. 
+    \end{enumerate}
+\end{definition}
+
+\begin{lemma}
+    THe action of $W$ on $\uw$ is properly discontinuous if and only if $W_{S(x)}$ is finite for all $x\in X$. 
+\end{lemma}
+
+\subsection{Universal property}
+
+We now claim that $\uw$ satisfies the following universal property.
+
+\begin{theorem}
+    (Vinberg) Let $(W,S)$ be any Coxeter system. Let $W$ act by homeomorphisms on a connected Hausdorff space $Y$. Assume that for any $s\in S$, the fixed point set $Y^s$ is non-empty. Assume that $X$ is a connected Hausdorff space, and has a mirror structure $(X_S)_{s\in S}$. Let $f;X\longrightarrow Y$ be a continuous map with $f(X_s)\subset Y^s$ for all $s\in S$. Then there is a unique extension of f to a $W$-equivariant map $\tilde{f}:\uw \longrightarrow Y$. This map is given by $\tilde{f}([w,x])=w\cdot f(x)$. 
+\end{theorem}
+
+
+
+
 
 
 

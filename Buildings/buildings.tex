@@ -298,21 +298,48 @@ To prove this theorem, the idea is that we first show that $s_i\mapsto \bar{s}_i
 \subsection{The Davis complex}
 
 \begin{definition}
-    Let $(W,S)$ be a Coxeter group. The davis complex $\Sigma=\Sigma(W,S)$ of $(W,S)$ is $\mathcal{U}(W,K)$, where  the chamber $K$ has mirror structure $(K_s)_{s\in S}$ such that $\forall x\in K$, $W_{S(x)}$ is finite
+    Let $(W,S)$ be a Coxeter group. The davis complex $\Sigma=\Sigma(W,S)$ of $(W,S)$ is $\mathcal{U}(W,K)$, where  the chamber $K$ has mirror structure $(K_s)_{s\in S}$ such that $\forall x\in K$, $W_{S(x)}$ is finite.
 \end{definition}
 
 
+\begin{definition}
+    We say that a subset $T\subseteq S$ is spherical if $W_T=\langle T\rangle$ is finite. In this case, we call $W_T$ a spherical special subgroup.  
+\end{definition}
+
+How do we construct $K$? Consider the set 
+\[L=\{T\subseteq S|T\neq\emptyset, T\text{ is spherical}\}.\]
+
+Let us note that this set itself forms an abstract simplicial complex. Also note that $\{s\}\in L$ for all $s\in S$. 
+
+\begin{definition}
+    This set $L=L(W,S)$ is called the nerve of $(W,S)$. 
+\end{definition}
+
+The set $L$ has vertex set $S$, and a simplex $\sigma_T$ spanning each non-empty spherical $T$.
+
+\begin{example}
+    Consider a finite Coxeter group $(W,S)$. Then obviously all spherical subgroups of $W$ are also finite. Therefore, the nerve of $W$ is the full simplex on $S$. 
+\end{example}
+
+\begin{example}
+    
+\end{example}
 
 
+\begin{definition}
+    A flag complex is a simplicial complex $L$ such that each finite, non-empty set of vertices $T$ spans a simplex in $L$ if and only if any two elements of $T$ span an edge in $L$. 
+\end{definition}
+
+\begin{lemma}
+    Consider a right-angled Coxeter system $(W,S)$. Then $L(W,S)$ is a flag complex.
+\end{lemma}
+
+\section{Topology of the Davis complex}
+\section{Geometry of the Davis complex}
+\section{Boundaries of Coxeter groups}
 
 
-
-
-
-
-
-
-
+\section{Buildings as apartment systems}
 
 
 

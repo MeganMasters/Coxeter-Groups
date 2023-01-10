@@ -222,7 +222,7 @@ Now we will denote by $[w,x]$ the equivalence class of $(w,x)$, and we will writ
 \end{example}
 
 \begin{definition}
-    Let $(W,S)$ be a Coxeter system. Let $X$ be a simplex with codimension-one faces $\{\Sigma_s|s\in S\}$. Then $\uw$ is called the Coxeter complex.
+    Let $(W,S)$ be a Coxeter system. Let $X$ be a simplex with codimension-one faces $\{\Delta_s|s\in S\}$. Then $\uw$ is called the Coxeter complex.
 \end{definition}
 
 \subsection{Properties of $\uw$}
@@ -340,6 +340,58 @@ The set $L$ has vertex set $S$, and a simplex $\sigma_T$ spanning each non-empty
 
 
 \section{Buildings as apartment systems}
+
+\begin{definition}
+    (Tits 1950s) Let $(W,S)$ be a Coxeter group. A building of type $(W,S)$ is a simplicial complex, which is a union of subcomplexes, called apartments. An apartment is a copy of the Coxeter complex for $(W,S)$. The maximal simplicies in the simplicial complex are called chambers. Now the apartments and chambers must satisfy
+    \begin{enumerate}
+    \item Given any two chambers, there exists an aprtment containing both of them.
+    \item Given any two apartments A and B, there exists an isomorphism from A to B which fixes $A \cap B$ pointwise. 
+    \end{enumerate}
+\end{definition}
+
+We have two descriptions of the Coxeter complex
+\begin{enumerate}
+    \item It is given by the basic construction $\uw$, where $X$ is the simplex with codimension-one faces $\{\Delta_s|s\in S\}$ and mirrors $X_s=\Delta_s.$ So concretely, $\uw$ is $W$-many copies of $X$, with the s-mirrors wX and wsX glued together. 
+    \item It is the geometric realisation of the poset $\{wW_T|T\subseteq S, w\in W\}$, where we order by inclusion.
+\end{enumerate}
+
+We also can expand the above definition to let the complex be a poyhedral complex, and allow the apartments to be other geometric realisations of $(W,S)$. 
+
+Specifically, if $(W,S)$ is a geometric reflection group on $\mathbb{X}^n$, then the apartments can be copies of $\mathbb{X}^n$ tiled by copies of $P$ - which are the chambers. 
+
+\begin{example}
+    Let us consider a single copy of $X^n$. We can tile this copy by P, and we get a thin building. This means that we only have one apartment. 
+\end{example}
+
+\begin{definition}
+If the apartment is a Coxeter complex, or more generally a tiling of $\mathbb{X}^n$, a panel is a codimension-one face of a chamber. If the apartment is a Davis complex, a panel is a copy of a mirror.
+\end{definition}
+
+\begin{definition}
+    A building is thick if every panel is contained in at least three chambers.
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

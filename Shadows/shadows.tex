@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[11pt]{article}
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{graphicx}
@@ -8,6 +8,7 @@
 \newtheorem{theorem}{Theorem}
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
 \newtheorem{example}{Example}
 \newtheorem{lemma}{Lemma}
 \newtheorem{corollary}{Corollary}
@@ -67,12 +68,11 @@ Now let us consider this geometric realisation of $\Sigma$, which we also call $
 \end{definition}
 
 Now the set of equivalence classes of parallel rays in $\Sigma$ form what we call the \ix{boundary sphere}, denoted by $\partial\Sigma$. This sphere inherits a tiling from the oirginal tiling of the Euclidean plane. To do this, we take, as the hyperplanes, the parallel classes of hyperplanes in $\Sigma$. 
+Now the maximal simplicies of the boundary sphere is just the parallel classes of Weyl chambers in \sg. We then refer to these maximal simplicies of the boundary as \ix{chambers}.
 
+\tr{Is it not a little confusing to call the special alcoves 'Weyl chambers', instead of 'Weyl alcoves'?}
 
-
-
-
-!!!!!!
+We can identify the alcoves of \sg with elements of $W$, and similarly identify chambers of $\partial\Sigma$ with elements of $W_0$, such that these idenfications are compatible. For instance, we identify the identity element to the chamber of $\partial\Sigma$ which has representative the fundamental Weyl chamber. 
 
 
 \section{Orientations}
@@ -148,13 +148,22 @@ However, we did not have to pick these positive sides in any consistent way.
     Simplex orientations are not periodic, as, for every set of parallel hyperplanes, we can find pairs ???
 \end{example}
 
-If $\phi$ is a periodic orientation, then we have a natural orientation which is induced on the boundary. 
+If $\phi$ is a periodic orientation, then we have a natural orientation induced on the boundary, and vice versa. 
 
+\begin{lemma}
+    Given a periodic orientation $\phi$ on an affine Coxeter complex \sg, there is an induced wall-consistent orientation $\partial\phi$ on the bounary complex $\partial\Sigma$. Now if $\phi$ is locally non-negative or non-trivial, so is $\partial\phi$. 
+\end{lemma}
 
-?????
+\begin{lemma}
+    Given a wall-consistent orientation $\phi$ of the boundary complex $\partial\Sigma$, thee existes a unique periodic orientation $\tilde{\phi}$ of \sg, which induces the orientation $\phi$. 
+\end{lemma}
 
+\begin{definition}
+    Let $\rho$ be a chamber of the boundary $\Delta$ of a Coxeter complex \sg. Then we form an orientation $\phi_{\rho}$ on the boundary $\Delta$. The \ix{Weyl chamber orientation} on $\Sigma$ is the induced orientation by $\phi_{\rho}$. 
+\end{definition}
 
 \section{Folded galleries}
+
 \subsection{Definitions}
 \begin{definition}
     Given a Coxeter complex \sg, a \ix{combinatorial gallery} is a sequence
@@ -227,9 +236,8 @@ We want to be able to characterise the last alcove in a gallery. We do this by c
 As $W$ has a natural left action on \sg, and so $W$ also acts on the set of galleries in \sg. For instance, $x\in W$ sends $\gamma = (c_0,p_1,c_1,...,p_n,c_n)$ to the gallery $\gamma = (xc_0,xp_1,xc_1,...,xp_n,xc_n)$. 
 
 \begin{lemma}
-    
+    Consider an affine Coxeter system \W with a Coxeter complex \sg. Let $a$ be a chamber in the boundary complex $\partial\Sigma$. Now a gallery $\gamma$ is $\phi_a$-positively folded if and only if $x\dot \gamma$ is $\phi_a$-positively folded. So the action of $W$ on $\delta\Sigma$ preserves the condition of '$\phi_a$-positively foldedness'.
 \end{lemma}
-
 
 \begin{definition}
     Consider a gallery $\gamma = (c_0,p_1,c_1,...,p_n,c_n)$. Let $H_i$ be the hyperplane containing the panel $p_i$, and let $r_i$ be the reflection across $H_i$. For $i=1,...,n$, let
@@ -255,15 +263,37 @@ Because of this property, we are able to define a \ix{multifolding} with respect
 \includegraphics[scale=0.6]{Screenshot 2023-02-03 153412.png}\\
 
 
+Now we fix an alcove of our Coxeter complex, and call this 1. Then for any word $w$ with elements in $S$, we let $\gamma_w$ be the unique unfolded gallery which has type $w$ and starts at 1. Now we write
+\begin{enumerate}
+    \item $\gamma \rightharpoonup \eta$ if $\gamma$ and $\eta$ are galleries such that $\eta = \gamma^I$ for some index set $I$,
+    \item $w\rightharpoonup u$ if $w$ and $u$ are words in $S$ such that there is a folding of $\gamma_w$ which has footprint $u$.
+    \item $w\rightharpoonup x$ if $x$ is an elemetn of $W$ such that there is a folding of $\gamma_w$ which has end alcove $c_x$. 
+\end{enumerate}
+We denote by $A\rightharpoonup^{\phi} B$ if the respective gallery is $\phi$-positively folded.
 
+\subsection{Statistics on positive folds}
 
+We now restrict to looking at Weyl chamber orientations over affine Coxeter complexes. This means that we have a complex \sg, with a boundary $\partial$\sg, and that our orientations are induced by a boundary chamber orientation. 
 
+We want to calculate the number of positive folds we can make.
 
+\begin{proposition}
+    Consider the largest element $w_0$ in $W_0$. Given an $x\in W$, and a $\phi$-postive (multi)folding $\gamma$ of $\gamma_x$, we have
+    \[l_R(xy^{-1})\leq |F(\gamma)|\leq l(w_0),\]
+    where $y:=\tau($ft$(\gamma))$.
+\end{proposition}
+\tr{proof uses lemmas from [13], should I have a look at that resource?}
 
+\begin{definition}
+    Let $\mathcal{H}(\Sigma)$ be the set of all hyperplanes contained in our Coxeter complex. For an alcove $c$ of \sg, let $\mathcal{H}(C)$ be the subset of $\mathcal{H}(\Sigma)$ which separates $c$ and the fixed identity alcove 1. 
+\end{definition}
 
+\tr{When we refer to the 'Coxeter complex', are we including the space taken up by chambers, or is it just the panels in our tiling? For instance, in this definition, if the Coxeter complex spans the whole plane, techincally all the hyperplanes of the plane are in the complex? Or if the complex is finite (e.g the dihedral group), there are technically no hyperplanes in the complex. }
 
-
-
+\begin{definition}
+    Let $Ch(\Sigma)$ denote the set of all alcoves in \sg. The $\phi$-valuation map is the map $\textnormal{v}_\phi:\textnormal{Ch}(\Sigma)\longrightarrow\mathbb{Z}$, with
+    \[c\mapsto \textnormal{v}_\phi(c):= |\]
+\end{definition}
 
 
 \end{document}

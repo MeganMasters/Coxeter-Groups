@@ -1,0 +1,110 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{xcolor}
+\begin{document}
+
+\newtheorem{theorem}{Theorem}
+\numberwithin{theorem}{section}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{example}{Example}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\numberwithin{definition}{section}
+\numberwithin{proposition}{section}
+\numberwithin{example}{section}
+\numberwithin{lemma}{section}
+\numberwithin{corollary}{section}
+\newcommand{\uw}{\mathcal{U}(W,X)}
+\newcommand{\W}{$(W,S)$}
+\newcommand{\ix}{\textit}
+\newcommand{\tr}{\textcolor{red}}
+\newcommand{\sg}{$\Sigma$}
+
+
+\title{Shadows in the Wild}
+\maketitle
+\tableofcontents 
+
+
+
+\textcolor{red}{Red notes for Megan}
+
+\textcolor{blue}{Blue notes for Yusra}
+
+
+
+In this text, we are considering galleries of the form $\gamma=(\lambda_0,c_0,p_1,c_1,...,p_n,c_n,\lambda_n)$, i.e galleries which start and end at vertices. This is slightly different to the other convention of starting and ending at alcoves. This changes the concept of minimla galleries slightly. 
+
+We also take our orientation to be a fixed Weyl chamber orientation. So we have fixed a chamber at infinity which defines the orientation.
+
+\begin{definition}
+    Let $\gamma$ be a gallery in a Coxeter complex $\Sigma$. At $p_i$, the hyperplane containing $p_i$ is said to be \ix{load-bearing} if $c_i$ lies on the positive side of the hyperplane. A hyperplane containing $\lambda_0$ is called \ix{load-bearing} if $c_0$ is on the positive side.
+\end{definition}
+
+Note that at each panel, we have at most one load-bearing hyperplane, but at the starting vertex we can have multiple. The number of load-bearing hyperplanes at $\lambda_0$ is bounded by the number of hyperplanes in the spherical Weyl group, or equivantely the size of a positive root system defining the Weyl group. 
+
+\begin{definition}
+    Given a gallery $\gamma$, its \ix{dimension} is the number of pairs $(p_i,H)$, where $H$ is a load-bearing hyperplane at $p_i$. 
+\end{definition}
+
+\begin{definition}
+    Given a fixed end-vertex and fixed type $\tau$, a gallery of maximal possible dimension is called a \ix{LS-gallery} of type $\tau$. 
+\end{definition}
+
+\tr{Is this related to the $\phi$-valuation? This seems very similar to the dominant alcove but 'the other way round'}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

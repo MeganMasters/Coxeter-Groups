@@ -37,7 +37,7 @@
 
 \textcolor{blue}{Blue notes for Yusra}
 
-
+\section{Roots}
 
 In this text, we are considering galleries of the form $\gamma=(\lambda_0,c_0,p_1,c_1,...,p_n,c_n,\lambda_n)$, i.e galleries which start and end at vertices. This is slightly different to the other convention of starting and ending at alcoves. This changes the concept of minimla galleries slightly. 
 
@@ -59,23 +59,35 @@ Note that at each panel, we have at most one load-bearing hyperplane, but at the
 
 \tr{Is this related to the $\phi$-valuation? This seems very similar to the dominant alcove but 'the other way round'}
 
+\begin{definition}
+    Let $A$ be a chosen apartment in a building $X$, and let $c\in A$ be an alcove. We define the \ix{retraction from X to A based at c} as the map $r_{A,c}:X\longrightarrow A$ where we send any alcove $d$ to its image under the isomorphism from the apartment containing both $c$ and $d$ to $A$. 
+\end{definition}
+
+\tr{How do we know that this isomorphism is unique?}\\
+\includegraphics[scale=0.6]{Screenshot 2023-02-15 at 13.32.45.png}
+\begin{definition}
+    Let $A$ be a chosen apartment in an affine building $X$, and let $C\in \partial A$ be a chamber at infinity of the apartment. We define the \ix{retraction from X to A based at C} as the map $\rho_{A,C}:X\longrightarrow A$, which sends an alcove $d$ to its image under the isomorphism from the apartment containing both $d$ and a Weyl chamber representing $C$ to $A$. 
+\end{definition}
 
 
+\includegraphics[scale=0.6]{Screenshot 2023-02-15 at 13.31.58.png}
 
 
+\section{Kostant Convexity}
+
+\begin{theorem}
+    We note that we can decompose any reductive group $G$ with assiciated Bruhat-Tits building as
+    \[G=UTK,\]
+    where $U$ is the stabiliser of the parallel class of the anti-dominant Weyl chamber in the base apartment $A_0$, $T$ is the set of translations of $A_0$, and $K$ is the stabiliser of the origin on $A_0$. 
+    Then for all $t,t'\in T$, we have
+    \[Ut'K\cap KtK\neq \emptyset \iff t'K\in\textnormal{conv}(W_0\cdot tK).\]
+\end{theorem}
 
 
-
-
-
-
-
-
-
-
-
-
-
+\begin{theorem}
+    Consider a thick affine building $X$, with fixed base apartment $A_0$ with origin $\lambda_0$, base alcove $c_0$ and fundamental Weyl chamber $C_0$. Choose a special vertex $\lambda$ in $a_0$. Then,
+    \[\rho_{C_0,A}(r^{-1}_{c_0,A}(W_0\cdot\lambda))=\textnormal{conv}(W_0\cdot \lambda).\]
+\end{theorem}
 
 
 

@@ -59,6 +59,26 @@ Note that at each panel, we have at most one load-bearing hyperplane, but at the
 
 \tr{Is this related to the $\phi$-valuation? This seems very similar to the dominant alcove but 'the other way round'}
 
+\begin{proposition}
+    Let $\gamma$ be an LS-gallery. Then
+    \begin{enumerate}
+        \item An application of $e_\alpha$ will increase the dimension of $\gamma$ by one.
+        \item An application of $f_\alpha$ will decrease the dimension of $\gamma$ by one.
+        \item Applying $e_\alpha$ then $f_\alpha$ gives the original gallery $\gamma$. Applying $f_\alpha$ then $e_\alpha$ gives the original gallery $\gamma$.
+        \item The set of LS-galleries is closed under applying e and f operators.
+        \item Any LS-gallery of the same type as $\gamma$ can be formed from $\gamma$ by a finite number of $e$ and $f$ operators.
+    \end{enumerate}
+\end{proposition}
+
+\tr{How can this proposition be true when LS-galleries are defined to be the maximal dimension galleries of a certain type, and I don't think $e$ and $f$ will change the type.}
+
+\begin{proposition}
+    Let $\lambda$ be a dominant vertex in \sg. Let $\phi$ be the Weyl chamber orientation which is induced by the anti-dominant Weyl chamber. Then we have
+    \[\textnormal{Sh}_\phi^\vee (\lambda)=\{\nu \leq \lambda|\nu \textnormal{ is a vertex with the same type as }\lambda\}.\]
+\end{proposition}
+
+\tr{Is the ordering here Bruhat ordering?}
+
 \begin{definition}
     Let $A$ be a chosen apartment in a building $X$, and let $c\in A$ be an alcove. We define the \ix{retraction from X to A based at c} as the map $r_{A,c}:X\longrightarrow A$ where we send any alcove $d$ to its image under the isomorphism from the apartment containing both $c$ and $d$ to $A$. 
 \end{definition}
@@ -90,9 +110,14 @@ Note that at each panel, we have at most one load-bearing hyperplane, but at the
 \end{theorem}
 
 
+\section{Affine Deligne-Lusztig varieties}
+
+Let $F=k((t))$, where $k$ is the algebraic closure of the finite field of order $q=p^m$, where $p$ is prime. Let $\sigma$ be the Frobenius map of $\mathbb{F}_q$. We denote by $\mathcal{O}$ the ring of integers $k[[t]]$. 
 
 
-
+\begin{definition}
+    Let $G$ be a connected reductive group over $\mathbb{F}_q$. The quotient $G(F)/I$ is called the 
+\end{definition}
 
 
 

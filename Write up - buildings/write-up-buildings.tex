@@ -1,0 +1,194 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{xcolor}
+\begin{document}
+
+\newtheorem{theorem}{Theorem}
+\numberwithin{theorem}{section}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{example}{Example}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\numberwithin{definition}{section}
+\numberwithin{proposition}{section}
+\numberwithin{example}{section}
+\numberwithin{lemma}{section}
+\numberwithin{corollary}{section}
+\newcommand{\uw}{\mathcal{U}(W,X)}
+\newcommand{\W}{$(W,S)$}
+\newcommand{\ix}{\textit}
+\newcommand{\tr}{\textcolor{red}}
+\newcommand{\sg}{$\Sigma$}
+
+
+%\title{Buildings}
+%\maketitle
+
+
+\section{Buildings}
+
+We can look at buildings from many different perspectives, including as Coxeter complexes, realisations of posets, and as chamber systems. We will see that these perspectives are equivalent, but that each perspective is useful in different contexts. 
+
+\subsection{Buildings as chamber systems}
+One construction of buildings is to start with an abstract chamber system - a set with some equivalence relations on it. Then, we can geoemtric realise this object to obtain a building. 
+
+\begin{definition}\cite[?]{RON}
+    A set $C$ is called a \ix{chamber system} over a set $I$ if each $i\in I$ is an equivalence relation on the elements of $C$. Each $i$ partitions our set $C$. We say two elements $x,y\in C$ are \ix{i-adjacent}, and we write $x\sim_{i} y$, if they lie in the same part of the partition, i.e they are equivalent with respect to the equivalence relation corresponding to $i$. The elements of $C$ are called \ix{chambers}. The \ix{rank} of a chamber system is the size of $I$. 
+\end{definition}
+
+
+A very important example is obtained by looking at a group $G$, and a subgroup $B$, and defining the following equivalence relations: 
+
+\begin{example}\cite[?]{RON}
+    Given a group $G$, a subgroup $B$, and an indexing set $I$, let there be a subgroup $B<P_i<G$ for all $i\in I$. Then we take as our chamber set $C$ the left cosets of $B$, and we define an equivalence relation
+    \[gB\sim_{i}hB \textnormal{ if and only if }gP_i=hP_i.\]
+\end{example}
+
+We now look at galleries of a chamber system. These are walks around the chambers, where we only move from one chamber to an adjacent chamber. 
+
+\begin{definition}\cite[?]{RON}
+    A finite sequence $(c_0,...,c_k)$ such that $c_i$ is adjacent to $c_{i+1}$ is called a \ix{gallery}. Its \ix{type} is a word $i_1,...,i_k$ in $I$ such that  $c_{i-1}$ is $i$-adjacent to $c_{i}$. We assume that no two consecutive chambers are equal.
+\end{definition}
+
+\begin{definition}\cite[?]{RON}
+    We call $C$ \ix{connected} if there is a gallery between any two chambers. Given a subset $J\subset I$, a \ix{residue of type J} is a $J$-connected component. The \ix{cotype} of $J$ is $I-J$. 
+\end{definition}
+
+
+\subsubsection{The geometric realisation}
+
+We now want to construct a geometric realisation of this chamber system. We construct a simplicial complex, where each simplex represents a residue of our chamber system.
+
+\begin{definition}
+    Let $R$ be a $J$-residue and $S$ be a $K$-residue. Then $S$ is a \ix{face} of $R$ if $R\subset S$ and $J\subset K$. The \ix{cotype} of $J$ is the set $I-J$. 
+\end{definition}
+
+
+Observe that if $R$ is a residue of cotype $J$, we have
+\begin{enumerate}
+    \item for $K\subset J$, there is a unique face of $R$ which has cotype $K$.
+    \item Let $S_1,S_2$ be faces of $R$ with cotypes $K_1$ and $K_2$. Then $S_1$ and $S_2$ have a shared face of cotype $K_1\cap K_2$. 
+\end{enumerate}
+
+
+With these observations, we can form a \ix{cell complex} of our chamber system. To do this, we form a vertex for each residue of corank 1. Then, we can associate to each residue of cotype $\{i,j\}$ an edge. From the observation above, this has as its boundary the residues of cotype $\{i\}$ and of cotype $\{j\}$. Then this can be continued inductively....
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Buildings with Coxeter complexes}
+
+
+\subsection{Buildings as apartment systems}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

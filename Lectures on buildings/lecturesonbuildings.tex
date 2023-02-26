@@ -46,7 +46,6 @@
 \end{definition}
 
 
-\tr{Other texts enforce that for each $i$ there are at least two elements which are $i$-adjacent.}
 
 
 \begin{example}
@@ -59,12 +58,16 @@
 \end{definition}
 
 \begin{definition}
+    If $(W,S)$ is a Coxeter group, and $f=i_1...i_k$, then $s_f$ represents the word $s_{1_1}...s_{i_k}$. 
+\end{definition}
+
+\begin{definition}
     We call $C$ \ix{connected} if we can connect any two chambers with a gallery. A \ix{J-residue} is a $J$-connected component. We call $\{i\}$-residues \ix{i-panels}. 
 \end{definition}
 
 
 \begin{definition}
-    Let $C$ and $D$ be two chamber systems over the same indexing set $I$. A \ix{morphism} between $C$ and $D$ is a map $C\longrightarrow D$ which preserves $i$-adjacency.
+    Let $C$ and $D$ be two chamber systems over the same indexing set $I$. A \ix{morphism} between $C$ and $D$ is a map $C\to D$ which preserves $i$-adjacency.
 \end{definition}
 
 \subsection{The geometric realisation}
@@ -144,55 +147,125 @@ Given a Coxeter group $W$, take as chambers the elements of $W$, and define an $
         \item Roots are convex.
         \item Let $\alpha$ be a root, and let $x$ and $y$ be adjacent chambers with $x\in\alpha$ and $y\in -\alpha$. Then
         \[\alpha =\{c|d(x,c)<d(y,c)\}.\]
+        \item There are bijections between the set of all reflections of a Coxeter group, the set of walls, and the set of pairs of opposite roots.
     \end{enumerate}
 \end{proposition}
 
+\begin{definition}
+    A \ix{folding of W onto $\alpha$} is the map which fixes $\alpha$ and sends $-\alpha$ to $\alpha$ by relfecting across the the defining wall of $\alpha$. 
+\end{definition}
+
+\begin{proposition}
+    Consider any chambers $x$ and $y$. Let $(x,x_1,...,x_{k-1},y)$ be a minimal gallery from $x$ to $y$. Define $\beta_i$ to be the root which contains $x_{i-1}$ and which does not contain $x_i$. Then the $\beta_i$ are all distinct, and this set is all the roots which contain $x$ but do not contain $y$. So in particular, $d(x,y)=k$ is the size of the set of roots containing $x$ but not containing $y$. 
+\end{proposition}
+
+
+\begin{proposition}
+    Given two chambers $x$ and $y$, a third chamber $z$ lies on a minimal gallery from $x$ to $y$ if and only if it is contained within every root which also contains $x$ and $y$. 
+\end{proposition}
+
+
+Let $R$ be a residue. Now we can define a map, called proj$_Rw$, which maps $w$ to the unique chamber of $R$ closest to $w$. 
+
+
+\begin{proposition}
+    Given a residue $R$ and a chamber $x\in R$, for any chamber $w$ there is a minimal gallery from $x$ to $w$ which passes through proj$_Rw$. 
+\end{proposition}
+
+\begin{lemma}
+    Residues are convex.
+\end{lemma}
+
+\begin{theorem}
+    Given a gallery $\gamma$ of type $f$, $\gamma$ is minimal if and only if $f$ is reduced.
+\end{theorem}
+
+
+\subsection{Finite Coxeter complexes}
+
+Now we assume that our group $W$ is finite, and so our Coxeter complex is also finite.
+
+\begin{definition}
+    The \ix{diameter}, diam$(W)$, of $W$ is the maximum distance between two chambers of the Coxeter complex. Two chambers are said to be \ix{opposite} if the distance between them is diam$(W)$.
+\end{definition}
+
+\begin{theorem}
+    \begin{enumerate}
+        \item diam$(W) = 1/2\ast |\{${roots of W}$\}|$. 
+        \item Two chambers are contained in no common root if and only if they are opposite.
+        \item For any given chamber, there is a unique opposite chamber.
+        \item Any chamber lies on a minimal gallery between two opposite chambers.
+    \end{enumerate}
+\end{theorem}
+
+
+\section{Buildings}
+
+\begin{definition}
+    Let $(W,S)$ be a Coxeter group with Coxeter matrix $M$, and let $I$ be an indexing set for the generators of $W$. A \ix{building of type M} is a chamber system $\Delta$ over $I$, such that each panel lies on at least two chambers, i.e every $\{i\}$-residue contains at least two elements. We also require a $W$-distance function
+    \[\delta:\Delta\times \Delta \to W,\]
+    such that if $f$ is a reduced word in $S$, then we have that $\delta(x,y)=s_f$ if and only if 
+\end{definition}
 
 
 
+\begin{example}
+    Taking our $W$-distance function to be $\delta(x,y)=x^{-1}y$, Coxeter complexes are buildings.
+\end{example}
 
 
+Some key properties of bulidings are as follows:
+\begin{enumerate}
+    \item $\Delta$ is connected.
+    \item $\delta$ is surjective.
+    \item $\delta(x,y)=\delta(y,x)^{-1}$.
+    \item $\delta(x,y)=s_i$ if and only if $x\neq y$ and $x\sim_i y$.
+    \item For $i\neq j$, $i$- and $j$-adjacency are mutually exclusive.
+    \item For chambers $x$ and $y$, if there is a gallery form $x$ to $y$ of type $f$, and $f$ is homotopic to $g$, then there is a gallery from $x$ to $y$ of type $g$. 
+    \item A gallery if minimal if and only if its type if reduced.
+    \item If there is a gallery of type $f$ from $x$ to $y$, and $f$ is reduced, then this gallery is unique.
+\end{enumerate}
+
+\begin{theorem}
+    Any $J$-residue is a building of type $M_J$. 
+\end{theorem}
+
+\begin{theorem}
+    Any isometry from a subset of $W$ into $\Delta$ can be extended to an isometry of $W$ into $\Delta$.
+\end{theorem}
+
+\begin{corollary}
+    Any two chambers lie in a common apartment.
+\end{corollary}
+
+\begin{theorem}
+    Apartments are convex.
+\end{theorem}
+
+\section{BN-Pairs}
+
+\begin{definition}
+    Let $G$ be a group. A \ix{Tits system} or \ix{BN-pair} of $G$ is a a pair of subgroups $B$, $N$ such that
+    \begin{enumerate}
+        \item $G=\langle B,N\rangle$
+        \item $B\cap N$ is normal inside $N$ and $W=N\backslash B\cap N$ is a Coxeter group with generators $s_1,...,s_n$.
+        \item If $w\in W$ and $s=s_i$, then $BsBwB\subset BwB\cup BswB$.
+        \item For all $s=s_i$, $sBs\neq B$. 
+    \end{enumerate}
+\end{definition}
 
 
+\begin{definition}
+    We say that a group $G$ of automorphisms on a building $\Delta$ is \ix{strongly transitive} if 
+    \begin{enumerate}
+        \item $G$ is transitive on the sets of pairs of chambers with the same $W$-distance, and
+        \item there exists an apartment $\Sigma$ whose stabiliser in $G$ is transitive on the apartments of $\Sigma$. 
+    \end{enumerate}
+\end{definition}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\begin{theorem}
+    Let $G$ act strongly transitively on a thick building $\Delta$. Let $\Sigma$ be as above, and take $W$ to be the corresponding Coxeter group. Choose a chamber $c$ in $\Sigma$, and take $B=$stab$_
+\end{theorem}
 
 
 

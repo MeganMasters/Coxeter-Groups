@@ -204,10 +204,10 @@ Now we assume that our group $W$ is finite, and so our Coxeter complex is also f
 \begin{definition}
     Let $(W,S)$ be a Coxeter group with Coxeter matrix $M$, and let $I$ be an indexing set for the generators of $W$. A \ix{building of type M} is a chamber system $\Delta$ over $I$, such that each panel lies on at least two chambers, i.e every $\{i\}$-residue contains at least two elements. We also require a $W$-distance function
     \[\delta:\Delta\times \Delta \to W,\]
-    such that if $f$ is a reduced word in $S$, then we have that $\delta(x,y)=s_f$ if and only if 
+    such that if $f$ is a reduced word in $S$, then we have that $\delta(x,y)=s_f$ if and only if there is a gallery of type $f$ between $x$ and $y$. 
 \end{definition}
 
-
+\tr{Do we actually require this $W$-distance function, or are we saying that a building is a structure such that we could find a $W$-distance function satisfying the conditions?}
 
 \begin{example}
     Taking our $W$-distance function to be $\delta(x,y)=x^{-1}y$, Coxeter complexes are buildings.
@@ -242,8 +242,7 @@ Some key properties of bulidings are as follows:
     Apartments are convex.
 \end{theorem}
 
-\section{BN-Pairs}
-
+\section{BN pairs}
 \begin{definition}
     Let $G$ be a group. A \ix{Tits system} or \ix{BN-pair} of $G$ is a a pair of subgroups $B$, $N$ such that
     \begin{enumerate}
@@ -253,7 +252,12 @@ Some key properties of bulidings are as follows:
         \item For all $s=s_i$, $sBs\neq B$. 
     \end{enumerate}
 \end{definition}
-
+\begin{lemma}
+    \begin{enumerate}
+        \item If $BwB=Bw'B$, then we have $w=w'$. So $G$ is the disjoint union $\bigcup BwB$. This union is called the Bruhat decomposition.
+        \item $l(sw)>l(w)$ implies that $BsBwB=BswB$. 
+    \end{enumerate}
+\end{lemma}
 
 \begin{definition}
     We say that a group $G$ of automorphisms on a building $\Delta$ is \ix{strongly transitive} if 
@@ -264,9 +268,101 @@ Some key properties of bulidings are as follows:
 \end{definition}
 
 \begin{theorem}
-    Let $G$ act strongly transitively on a thick building $\Delta$. Let $\Sigma$ be as above, and take $W$ to be the corresponding Coxeter group. Choose a chamber $c$ in $\Sigma$, and take $B=$stab$_
+    Let $G$ act strongly transitively on a thick building $\Delta$. Let $\Sigma$ be as above, and take $W$ to be the corresponding Coxeter group. Choose a chamber $c$ in $\Sigma$, and take $B=$stab$_Gc$, $N=$stab$_G\Sigma$. Then $(B,N)$ is a BN-pair, and $\delta(c,d)=w$ if and only if $d\subset BwB$, where we view $d$ to be a left coset of $B$. 
+ \end{theorem}
+
+
+
+\begin{theorem}
+    Given a BN-pair, we can define a building. The chambers are left cosets of $B$, and $i$-adjacency if defined by 
+    \[gb\sim_i hB \iff g^{-1}h\in B\langle  s_i\rangle B.  \]
+    Then the distance function is defined by
+    \[\delta(B,gB)=w\iff gB\subset BwB.\]
+    Now the subgroup $N$ stabilises an apartment, and $G$ acts strongly transitively.
 \end{theorem}
 
+
+\begin{example}
+Let $G=GL_{n+1}(k)$. Let $B$ be the set of upper-triangular matrices, and $N$ be the set of matrices with exactly one non-zero entry in each row and column. Then $B\cap N$ is the set of diagonal matrices, and this group gives $W\cong S_{n+1}$. $W$ has generators $s_1,...,s_n$, where $s_i$ is the permutation matrix which switches $i$ and $i+1$. 
+\end{example}
+
+\subsection{Parabolic subgroups}
+
+\begin{definition}
+    Given a subset $J\subset I$, we define the subgroup 
+    \[W_J=\langle s_j|j\in J\rangle.\]
+    Now we define 
+    \[P_J=BW_JB.\]
+    Then $P_J$ is a subgroup of $G$ by (BN2). Then a \ix{parabolic subgroup} is a conjugate of a $P_J$. If $J=\emptyset$, then the conjugates of $B:=P_\emptyset$ are called \ix{Borel subgroups}. 
+\end{definition}
+
+\begin{theorem}
+    \begin{enumerate}
+        \item The set of subgroups containing $B$ is precisely the set of $P_J$.
+        \item $P_J\cap P_K=P_{J\cap K}$ and $\langle P_J,P_K\rangle=P_{J\cup K}$.
+        \item The normaliser $N_G(P_J)$ of $P_J$ is $P_J$. The stabiliser stab$_G(K)$ of the $J$-residue $K$ containing $c$ is $P_J$. 
+        \item There is a bijection between the double coset spaces $W_J\backslash W/W_K$ and $P_J\backslash G/P_K$, defined by $W_JwW_K\mapsto P_JwP_K$.
+    \end{enumerate}
+\end{theorem}
+
+
+\begin{example}
+    Consider our previous example of $GL_{n+1}(k)$. Take $J=\{t,t+1,...,t+m-1\}$. Now $P_J$ has $GL_{m}(k)$ as its quotient group, and $P_J$ consists of matrices which are upper-triangular, except for the $m\times m$ block starting at $(t,t)$. 
+\end{example}
+
+
+\section{Spherical buildings and root groups}
+
+In this section, we assume that our Coxeter group is finite. Then a building where its associated Coxeter group is finite is called a \ix{spherical building}. We assume in this section that all buildings are thick.
+
+Recall that we call two chambers in an apartment \ix{opposite} if their distance is equal to the diameter of $W$. We extend this idea to any pair of simplicies of a spherical building. 
+
+\begin{definition}
+    Let $A$ be an apartment of a building. The \ix{opposite involution} is the map op$_A: A\to A$ which sends each chamber of $A$ to its opposite chamber. 
+\end{definition}
+
+\begin{definition}
+    Two simplicies of $W$ are \ix{opposite} if they are interchanged by op$_W$. 
+\end{definition}
+
+
+\begin{lemma}
+    Let $\pi$ and $\pi '$ be opposite panels in a building. Let $x\in$St$(\pi)$ and $y\in$St$(\pi ')$. Then $d(x,y)=d=$Diam$(W)$ unless $x=$proj$_\pi(y)$, in which case $d(x,y)=d-1$. 
+\end{lemma}
+
+Recall that we define a \ix{root} of a building as a root of an apartment of the building. These are the half-apartments arisings from the walls of an apartment.
+
+\begin{lemma}
+    Consider a root $\alpha$ of a building. Let $x$ be a chamber such that there is a panel $\pi$ of $x$ which lies in $\partial\alpha$. Then there is exactly one root containing both $x$ and $\partial\alpha$. Furthermore, if $x\notin \alpha$ then there is exactly one apartment containing both $x$ and $\alpha$. 
+\end{lemma}
+
+\begin{definition}
+    Define the set $E_1(c)$ to be the set of chambers which are adjacent to $c$.
+\end{definition}
+
+\begin{proposition}
+    Consider a spherical building, and let $c$ and $d$ be two chambers which are opposite. Let $\phi$ be an automorphism of the building which fixes $b$ and all elements of $E_1(c)$. Then $\phi$ is the identity automorphism.  
+\end{proposition}
+
+\subsection{Root Groups}
+
+\begin{definition}
+    The \ix{root group} $U_\alpha$ of a root $\alpha$ in a spherical building is the set
+    \[U_\alpha = \{ g\in \textnormal{Aut}\Delta |\textnormal{ } g \textnormal{ fixes every chamber having a panel in } \alpha-\partial\alpha\}. \]
+\end{definition}
+
+\tr{This definition is only for when the "diagram" has no isolated nodes. What diagram are they referring to?}
+
+Now if this diagram is connected, then we conclude, using the proposition from the previous subsection, that the only element of $U_\alpha$ which fixes an apartment $A$ which contains $\alpha$ is the identity automorphism. 
+
+
+\begin{definition}
+    A building is \ix{Moufang} if, for every root $\alpha$, $U_\alpha$ is transitive.
+\end{definition}
+
+By the observation above, if a building is transitive, then it must be simple-transitive. 
+
+Noting that, if $g$ sends one root $\alpha$ to another root $\beta$, then $gU_\alpha g^{-1}= u_\beta$, for a building to be Moufang it is enough to require $U_\alpha$ to be transitive for any root $\alpha$ in an apartment. 
 
 
 

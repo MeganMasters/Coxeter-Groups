@@ -1,0 +1,28 @@
+
+
+Structure of project:
+
+Introduction - 1 page 
+
+Buildings - 4 pages
+    - chamber systems
+    - realisations
+    - 
+
+
+Shadows - 10 pages
+    - orientations
+    - braid invariant orientations
+    - galleries
+    - folded galleries
+    - types
+    - folding and unfolding (incl. positive foldings)
+    - shadows
+
+
+Main question - 4 pages
+    - progress so far in field
+    - statistics on positive folds 
+    - computation of regular shadows
+
+

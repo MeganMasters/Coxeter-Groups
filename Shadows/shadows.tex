@@ -399,20 +399,19 @@ Let Dir$(W)$ represent the set of chambers in the bounday complex $\partial\Sigm
 \end{definition}
 
 
-\begin{lemma}
+\begin{lemma} (Algorithm L)
     Let $\phi\in\textnormal{Dir}(W)$ and $x\in W$. Let $w=(s_1,...,s_n)$ be a reduced word for $x$. Let $A_0=\{1\}$ and let
     \[A_i:=A_{i-1}\cdot s_i\cup \{z\in A_{i-1}|v_\phi(zs)<v_\phi(z)\}.\]
     Then $A_n=\textnormal{Sh}_\phi(x)$. 
 \end{lemma}
 
-\begin{lemma}
+\begin{lemma} (Algorithm R)
     Let $\phi\in$ Dir$(W)$ and $x\in W$, with $(s_n,...,s_1)$ a reduced expression for $x$. Let $B_0^\phi:=\{1\}$ and define
     \[B_i^\phi = \begin{cases}
         s_iB_{i-1}^{s_i\phi}\cup B_{i-1}^\phi & \textnormal{if v}_\phi(s_i)<0,\\
         s_iB_{i-1}^{s_i\phi} & \textnormal{if v}_\phi(s_i)>0.
     \end{cases}\]
 \end{lemma}
-
 
 
 

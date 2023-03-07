@@ -223,9 +223,13 @@ We want to be able to characterise the last alcove in a gallery. We do this by c
     We can calculate the final alcove of a gallery as the element $c_n=c_0\cdot w$, where $w=\tau(\text{ft}(\gamma))$.
 \end{lemma}
 
+\begin{proof}
+    The footprint of a gallery is exactly the gallery achieved by deleting repeated alcoves and the corresponding panels. So we are left with a gallery ft$(\gamma)=(c_o=d_0,q_1,d_1,...,q_m,d_m=c_n)$. Now $d_i$ is exactly defined as the alcove obtained by multiplying $d_{i-1}$ by $s_i$, where $s_i$ is the type of the panel $q_i$. So, by induction, $d_m$, which equals $c_n$, can be calculated by multiplying $d_0=c_0$ by the type of ft$(\gamma)$. 
+\end{proof}
+
 \subsection{Folding and unfolding galleries}
 
-Now we have defined galleries, and in particular folded galleries, we want to be able to create folded galleries ourselves from unfolded galleries. We do this in a natural way, where folding along a panel leads to a reflection of the rest of the gallery with respect to that panel. For instance, this figure shows foldings in the 4th and 7th panel of the given gallery, and also illustrates that foldings are commutative. 
+Now we have defined galleries, and in particular folded galleries, we want to be able to create folded galleries ourselves from unfolded galleries. We do this in a natural way, where folding along a panel leads to a reflection of the rest of the gallery with respect to that panel. For instance, this figure shows foldings in the 4th and 7th panel of the given gallery, and also illustrates that foldings are commutative - a fact that we will formally prove.
 
 \includegraphics[scale=0.6]{Screenshot 2023-02-03 153412.png}\\
 
@@ -250,7 +254,7 @@ We note that, as $W$ has a natural left action on \sg, $W$ also acts on the set 
 \end{lemma}
 
 \begin{proof}
-    
+    This is just a result of the definition of the type of a panel, which is invariant under reflections along walls. Also, we note that $r_ir_i=1$, as reflections are self-inverse, so applying a fold twice at panel $p_i$ will first achieve $(c_o,p_1,...,p_i,r_ic_i,r_ip_{i+1},r_ic_{i+1},...,r_ip_n,r_ic_n)$, and will then achieve $(c_o,p_1,...,p_i,r_ir_ic_i,r_ir_ip_{i+1},r_ir_ic_{i+1},...,r_ir_ip_n,r_ir_ic_n)=(c_0,p_1,...,p_n,c_n)$. Hence, $(\gamma^i)^i=\gamma$.
 \end{proof}
 
 \begin{lemma}
@@ -258,21 +262,27 @@ We note that, as $W$ has a natural left action on \sg, $W$ also acts on the set 
 \end{lemma}
 
 \begin{proof}
-    
+    As we have already dealt with the case that $i=j$, we can assume that $i<j$. Let $r$ be the reflection along the wall containing $p_i$, and let $t$ be the reflection along the wall containing $p_j$. Then we have, by the definition of (un)-folding,
+    \[(\gamma^j)^i=((c_0,p_1,c_1,...,c_{i-1},p_i,rc_i,...,rp_j,rtc_j,...,rtc_n)).\]
+    Also, if we let $u$ be the reflection along the wall containing $rp_j$, we have
+    \[(\gamma^i)^j=((c_0,p_1,c_1,...,c_{i-1},p_i,rc_i,...,rp_j,urc_j,...,urc_n)).\]
+    Let us calculate the maps $r$, $t$ and $u$. Given a panel $p$ of an alocve $c$, the reflection along the wall containing $p$ is given by the multiplication map $c\tau(p)c^{-1}$. Hence,
+    \[r=c_{i-1}\tau(p_i)c_{i-1}^{-1}, t=c_{j-1}\tau(p_j)c_{j-1}^{-1}, \textnormal{ and } u=(rc_{j-1})\tau(rp_j)(rc_{j-1})^{-1}.\]
+    Now by lemma ..., reflections preserve type, so we have that $\tau(rp_j)=\tau(p_j)$. Then
+    \[\begin{aligned}
+        ur & =(rc_{j-1})\tau(rp_j)(rc_{j-1})^{-1}c_{i-1}\tau(p_i)c_{i-1}^{-1}\\
+           & =r(c_{j-1}\tau(p_j)c_{j-1}^{-1})(c_{i-1}\tau(p_i)c_{i-1}^{-1})(c_{i-1}\tau(p_i)c_{i-1}^{-1})\\
+           & = r(c_{j-1}\tau(p_j)c_{j-1}^{-1})\\
+           & =rt.
+    \end{aligned}\]
+    Therefore $ur=rt$, and hence $(\gamma^j)^i=(\gamma^i)^j$.
 \end{proof}
 
-Because of this property, we are able to define a \ix{multifolding} with respect to a subset $I$ of $\{1,...,n\}$ as the (un-)foldings $\gamma^I$. Now multifoldng does not affect the type. Then the set of folds of $\gamma^I$ will be the symmetric difference of the folds of $\gamma$ and $I$. In particular, if $I$ and $J$ are subsets of $\{1,...,n\}$, $(\gamma^I)^J=\gamma^{I\Delta J}$. 
+Because of this property, we are able to define a \ix{multifolding} with respect to a subset $I$ of $\{1,...,n\}$ as the (un-)foldings $\gamma^I$. Now multifoldng does not affect the type. Then the set of folds of $\gamma^I$ will be the symmetric difference of the folds of $\gamma$ and $I$. In particular, if $I$ and $J$ are subsets of $\{1,...,n\}$, $(\gamma^I)^J=\gamma^{I\Delta J}$. The following corollary now follows.
 
 \begin{corollary}
     Given any gallery $\gamma$, there is a subset $I\subset \{1,...,n\}$ such that $\gamma^I$ is unfolded, and $\gamma$ and $\gamma^I$ have the same type.
 \end{corollary}
-
-\begin{proof}
-    
-\end{proof}
-
-
-
 
 
 Now we fix an alcove of our Coxeter complex, and call this 1. Then, for any word $w$ with elements in $S$, we let $\gamma_w$ be the unique unfolded gallery which has type $w$ and starts at 1. Now we write
@@ -284,8 +294,42 @@ Now we fix an alcove of our Coxeter complex, and call this 1. Then, for any word
 We denote by $A\stackrel{\phi}{\rightharpoonup} B$ if the respective gallery is $\phi$-positively folded.
 
 
+\section{Braid invariant orientations}
 
+Two reduced words in $S$ represent the same element in the Coxeter group if and only if they differ by a squence of braid moves CITE. A braid move replaces a subword $s_is_j...$ of length $m_{ij}$ with the string $s_js_i...$, again of length $m_{ij}$. We want to define the concept of braid invariant orientations, so we can later conclude that, if we have a braid invariant orientation, our shadows of a gallery do not depend on the chosen word of $S$ representing the end alcove. 
 
+\begin{definition}
+    Consider a Coxeter system $(W,S)$ and a corresponding Coxeter complex \sg. Let $\phi$ be an orientation on \sg. Then we say that $\phi$ is \ix{braid invariant} if, given any two braid equivalent words $w,w'$ in $S$ and any $x\in W$, $w\stackrel{\phi}{\rightharpoonup} x$ if and only if $w'\stackrel{\phi}{\rightharpoonup} x$. Then if $y\phi$ is braid invariant for all $y\in W$, $\phi$ is called \ix{strongly braid invariant}. 
+\end{definition}
+
+For instance, trivial orientations are strongly braid invariant, but these orientations are not very interesting. The following proposition gives us a large family of orientations which are braid invariant. A proof of this proposition can be found in \cite[pp.135-138]{SHA}.
+
+\begin{proposition}
+    Weyl chamber orientations are braid invariant.
+\end{proposition}
+
+\tr{Happy to prove this proposition, but the proof is quite long so wanted to ask before I wrote it.}
+
+\section{Shadows}
+\begin{definition}
+    Consider a Coxeter system $W$ and an orientation $\phi$ on the Coxeter complex \sg\W. Let $w$ be a word is $S$. The \ix{shadow} of $w$ with respect to $\phi$ is the set 
+    \[\textnormal{Sh}_\phi(w):=\{u\in W|w\stackrel{\phi}{\rightharpoonup} u\}.\]
+    If $\phi$ is braid invariant, we can define Sh$_\phi(x)=$Sh$_\phi(w)$, where $w$ is any reduced expression of $x\in W$. If we have the Weyl chamber orientation $\phi_a$ with $a\in W_0$, the \ix{regular shadow} of $x$ with respect to $a$ is Sh$_a(w):=$Sh$_{\phi_a}(w)$. The \ix{full shadow} of $x$ is the union of regular shadows. 
+\end{definition}
+
+\includegraphics[scale=0.6]{Screenshot 2023-02-08 at 10.39.18.png}\\
+
+\begin{definition}
+    Let $x=s_1...s_n$ be a reduced expression for $x\in W$. Let $y\in W$. We say that $y\leq x$ if there exists a reduced expression for $y$ of the form $s_{i_1}...s_{i_k}$ with $1\leq i_1\leq...\leq i_j\leq n$. This ordering is called the \ix{Bruhat order}.
+\end{definition}
+
+\begin{proposition}
+    Consider the trivial positive orientation $\phi_+$, and the alcove orientation $\phi_1$ towards 1. For $x,y\in W$, $x\geq y$ if and only if $x\stackrel{\phi_+}{\rightharpoonup} y$, if and only if $x\stackrel{\phi_1}{\rightharpoonup} y$.
+\end{proposition}
+
+\begin{proof}
+    
+\end{proof}
 
 
 

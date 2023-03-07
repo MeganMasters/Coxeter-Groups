@@ -66,21 +66,22 @@ First, given a gallery, we want to calculate the number of positive folds of thi
     \end{cases}\]
 \end{definition}
 
+We now want to relate this function to our $\phi$-valuation map.
+
 \begin{lemma}
     \[\textnormal{v}_\phi(c)=\sum_{H\in\mathcal{H}(\Sigma)}(p_{\phi}(c,H)-p_\phi(1,H)).\]
 \end{lemma}
 
 \begin{proof}
-    
+    We are assuming that our oritentation $\phi$ is a chamber orientation. So, in particular, this orientation is locally non-trivial. Therefore, every hyperplane $H$ has a positive and negative side. First consider when 1 and $c$ lie on the same side of $H$. Then $H$ is not an element of $\mathcal{H}(c)$. But in this case, $p_\phi(1,H)=p_\phi(c,H)$ and so this hyperplane does not contribute to the above sum. 
+    Now consider when 1 and $c$ lie on opposite sides of $H$. In this case, $H\in \mathcal{H}(c)$. If $c$ lies on the positive side of $H$, then $H\in\mathcal{H}_{\phi}^+(c)$ and $p_\phi(c,H)=1$ and $p_\phi(1,H)=0$, and so $H$ contributes $+1$ to the sum above. Similarly, if $c$ lies on the negative side of $H$, then $H\in\mathcal{H}_{\phi}^-(c)$ and $p_\phi(c,H)=0$ and $p_\phi(1,H)=1$, and so $H$ contributes $-1$ to the sum above. Therefore, we are just counting the size of $\mathcal{H}_{\phi}^+(c)$ minus the size of $\mathcal{H}_{\phi}^-(c)$, which is exactly $\textnormal{v}_\phi(c)$. 
 \end{proof}
 
+
+The next lemma comes from the trivial observation that \[|\mathcal{H}_{\phi}^+(c)|+|\mathcal{H}_{\phi}^+(c)|\geq |\mathcal{H}_{\phi}^+(c)|-|\mathcal{H}_{\phi}^+(c)|.\]
 \begin{lemma}
     \[l(x)\geq\textnormal{v}_\phi(c_x).\]
 \end{lemma}
-
-\begin{proof}
-    
-\end{proof}
 
 \begin{definition}
     We call an alcove $c$ \ix{dominant} with respect to $\phi$ if $\textnormal{v}_\phi(c)=l(c).$
@@ -102,8 +103,74 @@ First, given a gallery, we want to calculate the number of positive folds of thi
     
 \end{proof}
 
+\subsection{Computation of regular shadows}
+
+We now want to see how we can use this new valuation map to define a recursive definition of a shadow. To do this, we need the next important theorem. A proof of this theorem can be found in \cite[pp.142-143]{SHA}. 
+
+Let Dir$(W)$ represent the set of chambers in the boundary complex $\partial\Sigma$. We call elements of Dir$(W)$ \ix{directions in W}. 
+
+\begin{theorem}
+    Let $\phi\in$Dir$(W)$, $x\in W$ and $s\in S$. Then
+    \begin{enumerate}[(i)]
+        \item If $s$ is in the right descent set $D_R(x)$ of $x$, then we have
+        \[\textnormal{Sh}_\phi(x)=\textnormal{Sh}_\phi(xs)\cdot s \cup \{z\in \textnormal{Sh}_\phi(xs):\textnormal{v}_\phi(zs)<\textnormal{v}_\phi(z)\}.\]
+        \item If $s$ is in the left descent set $D_R(x)$ of $x$, then we have
+        \[\textnormal{Sh}_\phi(x)=\begin{cases}
+            s\cdot \textnormal{Sh}_\phi(sx)\cup \textnormal{Sh}_\phi(sx) &if\textnormal{ v}_\phi(s)<0,\\
+            s\cdot \textnormal{Sh}_\phi(sx) &if \textnormal{ v}_\phi(s)>0.\\
+        \end{cases}\]
+    \end{enumerate}
+\end{theorem}
 
 
+%\begin{definition}
+   % Given $x\in W$, $a\in W_0$ and $\phi\in$ Dir$(W)$, the \ix{partial shadow in local direction a} is the set 
+   % \[\textnormal{Sh}_\phi^a(x):=\{y\in \textnormal{Sh}_\phi(x)|\bar{y}=a\},\]
+   % where $\bar{y}$ is the image of $y$ under the natural projection to the spherical Weyl group $W_0$. 
+%\end{definition}
+
+Now we can use this theorem to show that the next two lemmas both give us recursive defintions for the shadow of a gallery. 
+
+\begin{lemma} (Algorithm L)
+    Let $\phi\in\textnormal{Dir}(W)$ and $x\in W$. Let $w=(s_1,...,s_n)$ be a reduced word for $x$. Let $A_0=\{1\}$ and let
+    \[A_i:=A_{i-1}\cdot s_i\cup \{z\in A_{i-1}|v_\phi(zs)<v_\phi(z)\}.\]
+    Then $A_n=\textnormal{Sh}_\phi(x)$. 
+\end{lemma}
+
+\begin{proof}
+    Using the theorem above, we can show by induction that $A_i=$Sh$_\phi(s_1...s_i)$ for $i=0,...,n$. Firstly, for $i=0$ it is trivial, as Sh$(1)=\{1\}$. Then assume that $A_i=$Sh$_\phi(s_1...s_i)$ for $i<j$. By part (i) of the theorem,\[\begin{aligned}
+    \textnormal{Sh}(s_1...s_j)& = \textnormal{Sh}(s_1...s_js_j)\cdot s_j \cup \{z\in \textnormal{Sh}(s_1...s_js_j): \textnormal{v}_\phi(zs)<\textnormal{v}_\phi(z)\}\\
+        & = \textnormal{Sh}(s_1...s_{j-1})\cdot s_j \cup \{z\in \textnormal{Sh}(s_1...s_{j-1}): \textnormal{v}_\phi(zs)<\textnormal{v}_\phi(z)\}\\
+        & = A_{j-1}\cdot s_j \cup \{z\in A_{j-1}: \textnormal{v}_\phi(zs)<\textnormal{v}_\phi(z)\}\\
+        & = A_j.
+    \end{aligned}\]
+\end{proof}
+
+\begin{lemma} (Algorithm R)
+    Let $\phi\in$ Dir$(W)$ and $x\in W$, with $(s_n,...,s_1)$ a reduced expression for $x$. Let $B_0^\phi:=\{1\}$ and define
+    \[B_i^\phi = \begin{cases}
+        s_iB_{i-1}^{s_i\phi}\cup B_{i-1}^\phi & \textnormal{if v}_\phi(s_i)<0,\\
+        s_iB_{i-1}^{s_i\phi} & \textnormal{if v}_\phi(s_i)>0.
+    \end{cases}\]
+    Then $B^\phi_n=$Sh$_\phi(x)$ for all $\phi\in$ Dir$(W)$. 
+\end{lemma}
+
+\begin{proof}
+    Again, we can use the theorem above to prove by induction that $B^\phi_i=$Sh$_\phi(s_i...s_1)$ for all $i=0,...,n$. For $i=0$ it is trivial as Sh$_\phi(1)=\{1\}$. Now assume that $B^\phi_i=$Sh$_\phi(s_i...s_1)$ for all $i<j$. By part (ii) of the theorem, if $v(s_j)<0$, then
+    \[\begin{aligned}
+        Sh_\phi(s_j...s_1)&=s_j\cdot \textnormal{Sh}_{s_j\phi}(s_js_j...s_1)\cup \textnormal{Sh}_\phi(s_js_j...s_1)\\
+                        &=  s_j\cdot \textnormal{Sh}_{s_j\phi}(s_{j-1}...s_1)\cup \textnormal{Sh}_\phi(s_{j-1}...s_1)\\
+                        &= s_j\cdot B^{s_j\phi}_{j-1}\cup B^{\phi}_{j-1}\\
+                        &= B^\phi_j. 
+    \end{aligned}\]
+    Similarly, if $v(s_j)<0$, then
+    \[\begin{aligned}
+        Sh_\phi(s_j...s_1)& = s_j\cdot \textnormal{Sh}_{s_j\phi}(s_js_j...s_1)\\
+                        & = s_j\cdot \textnormal{Sh}_{s_j\phi}(s_{j-1}...s_1)\\
+                        & = s_j \cdot B^{s_j\phi}_{j-1}\\
+                        & = B^{s_j\phi}_{j}. 
+    \end{aligned}\]
+\end{proof}
 
 
 

@@ -28,8 +28,216 @@
 \newcommand{\sg}{$\Sigma$}
 
 
-%\title{Buildings}
-%\maketitle
+\title{Shadows in Coxeter complexes}
+\maketitle
+\tableofcontents
+
+
+\section{Introduction}
+
+In this project, we will be looking at the geometric objects of buildings. Buildings can be defined in many ways. For instance, we can define buildings using a system of chambers, or Coxeter complexes. We can look at buildings as geometric objects, combinatorial objects, or as representations of groups. These viewpoints give us unique information of the building and group. We will look at galleries in buildings. These are walks around the chambers of a building. We then look at foldings of these galleries, with respect to orientations of our building. An important combinatorial question of foldings is which alcoves of the building can be reached by folding a certain gallery. We call this set the \ix{shadow} of a gallery. We shall see some progress in answering the question of calculating the shadow, and we will discuss tools which could be used to improve these answers. 
+
+
+\section{Chamber systems}
+We first start our exploration of buildings with an abstract chamber system - a set with some equivalence relations on it.  
+
+\begin{definition}\cite[?]{RON}
+    A set $C$ is called a \ix{chamber system} over a set $I$ if each $i\in I$ is an equivalence relation on the elements of $C$. Each $i$ partitions our set $C$. We say two elements $x,y\in C$ are \ix{i-adjacent}, and we write $x\sim_{i} y$, if they lie in the same part of the partition, i.e they are equivalent with respect to the equivalence relation corresponding to $i$. The elements of $C$ are called \ix{chambers}. The \ix{rank} of a chamber system is the size of $I$. 
+\end{definition}
+
+
+A very important example is obtained by looking at a group $G$, and a subgroup $B$, and defining the following equivalence relations: 
+
+\begin{example}\cite[?]{RON}
+    Given a group $G$, a subgroup $B$, and an indexing set $I$, let there be a subgroup $B<P_i<G$ for all $i\in I$. Then we take as our chamber set $C$ the left cosets of $B$, and we define an equivalence relation
+    \[gB\sim_{i}hB \textnormal{ if and only if }gP_i=hP_i.\]
+\end{example}
+
+We now look at galleries of a chamber system. These are walks around the chambers, where we only move from one chamber to an adjacent chamber. 
+
+\begin{definition}\cite[?]{RON}
+    A finite sequence $(c_0,...,c_k)$ such that $c_i$ is adjacent to $c_{i+1}$ is called a \ix{gallery}. Its \ix{type} is a word $i_1,...,i_k$ in $I$ such that  $c_{i-1}$ is $i$-adjacent to $c_{i}$. We assume that no two consecutive chambers are equal.
+\end{definition}
+
+\begin{definition}\cite[?]{RON}
+    We call $C$ \ix{connected} if there is a gallery between any two chambers. Given a subset $J\subset I$, a \ix{residue of type J} is a $J$-connected component. The \ix{cotype} of $J$ is $I-J$. 
+\end{definition}
+
+
+\subsection{The geometric realisation}
+
+We now want to construct a geometric realisation of this chamber system. This will turn out to be an example of a building. We construct a simplicial complex, where each simplex represents a residue of our chamber system.
+
+\begin{definition}
+    Let $R$ be a $J$-residue and $S$ be a $K$-residue. Then $S$ is a \ix{face} of $R$ if $R\subset S$ and $J\subset K$. The \ix{cotype} of $J$ is the set $I-J$. 
+\end{definition}
+
+
+Observe that if $R$ is a residue of cotype $J$, we have
+\begin{enumerate}
+    \item for $K\subset J$, there is a unique face of $R$ which has cotype $K$.
+    \item Let $S_1,S_2$ be faces of $R$ with cotypes $K_1$ and $K_2$. Then $S_1$ and $S_2$ have a shared face of cotype $K_1\cap K_2$. 
+\end{enumerate}
+
+
+With these observations, we can form a \ix{cell complex} of our chamber system. To do this, we form a vertex for each residue of corank 1. Then, we can associate to each residue of cotype $\{i,j\}$ an edge. From the observation above, this has as its boundary the residues of cotype $\{i\}$ and of cotype $\{j\}$. Then this can be continued inductively....
+
+\subsection{$A_n(k)$ Buildings}
+
+A key example of a chamber system is formed by considering the subspaces of an $n+1$ dimensional vector space $V$ over a field $k$. We define the chambers of our chamber system to be the maximal sequences \[V_1\subset V_2\subset ...\subset V_n\] of subspaces of $V$, where $V_i$ has dimension $i$. We can then define adjancency by saying that two sequences $V_1\subset V_2\subset ...\subset V_n$ and $V_1'\subset V_2'\subset ...\subset V_n'$ are $i$-adjacent if and only if $V_j=v_j'$ for all $j\neq i$. Then the residues of type $i$ correspond to 1 spaces in the 2 space $V_{i+1}/V_{i-1}$. 
+
+We then get a geometric realisation of this chamber system. Here, a residue of cotype $J=\{j_1,...,j_r\}$ corresponds to a sequence \[V_{j_1}\subset V_{j_2}\subset ...\subset V_{j_r}.\] This residue has chambers which are maximal flags $V_1'\subset V_2'\subset ...\subset V_n'$ such that $V_j'=v_j$ if $j\in J$. 
+
+In particular, residues of cotype $\{i\}$ correspond to the subspaces of $V$. 
+
+
+
+
+\section{Coxeter complexes}
+
+Given a Coxeter group $W$, take as chambers the elements of $W$, and define an $i$-adjancency by $w\sim_iwr_i$, where $\{s_1,...,s_n\}$ are the set of generators of the Coxeter group. If the Coxeter group has Coxeter matrix $M$, we call this building a \ix{Coxeter complex of type M}.\\
+
+\includegraphics[scale=0.7]{Screenshot 2023-02-20 at 14.12.15.png}\\
+
+
+\begin{lemma}
+    The automorphism group of the Coxeter complex is isomorphic to the Coxeter group, and this acts simple-transitively on the set of chambers.
+\end{lemma}
+
+\begin{definition}
+    A \ix{reflection r} of $W$ is a conjugate of the generators of $W$. The wall $M_r$ of a reflection $r$ is the set of simplicies in the Coxeter complex which is fied by $r$ when $r$ acts on the complex by left multiplication. Then $M_r$ is a subcomplex of codimension 1.
+\end{definition}
+
+\begin{theorem}
+    There is a bijection between the set of reflections of a Coxeter group, and the set of walls in the corresponding Coxeter complex.
+\end{theorem}
+
+Now we can make a very similar definition of a gallery for Coxeter complexes.
+
+\begin{definition}
+    Given a Coxeter complex \sg, a \ix{combinatorial gallery} is a sequence
+    \[\gamma = (c_0,p_1,c_1,p_2,...,p_n,c_n),\]
+    where the $c_i$ are alcoves and the $p_i$ are panels of \sg, such that $p_i$ is contained in $c_i$ and $c_{i-1}$ for all $i-1,...,n$. The length of a combinatorial gallery $\gamma$ is $n+1$ - this counts how many alcoves there are in the sequence. Then $\gamma$ is \ix{minimal} if there does not exist a shorter gallery starting at $c_0$ and ending at $c_n$. 
+\end{definition}
+
+So a gallery is a path between $c_0$ and $c_n$ through alcoves, such that adjacent alcoves in the path share a commmon panel. 
+
+\begin{definition}
+    A gallery $(c_0,...,c_k)$ \ix{crosses } $M_r$ if there is an $i$ such that $M_r$ interchanges $c_{i-1}$ and $c_i$. 
+\end{definition}
+
+\begin{lemma}
+    \begin{enumerate}
+        \item Any minimal gallery does not cross a wall twice.
+        \item Every gallery from two alcoves $x$ and $y$ have the same parity of crossings of any wall.
+    \end{enumerate}
+\end{lemma}
+
+\begin{definition}
+    Each hyperplane splits an apartment into two half-apartments called \ix{roots}. If $\alpha$ is one root, we denote the other corresponding root by $-\alpha$. 
+\end{definition}
+
+
+\begin{definition}
+    A set of alcoves is called \ix{convex} if any minimal gallery between two alcoves of the set lies entirely within the set. 
+\end{definition}
+
+\begin{proposition}
+    \begin{enumerate}
+        \item Roots are convex.
+        \item Let $\alpha$ be a root, and let $x$ and $y$ be adjacent chambers with $x\in\alpha$ and $y\in -\alpha$. Then
+        \[\alpha =\{c|d(x,c)<d(y,c)\}.\]
+        \item There are bijections between the set of all reflections of a Coxeter group, the set of walls, and the set of pairs of opposite roots.
+    \end{enumerate}
+\end{proposition}
+
+\begin{definition}
+    A \ix{folding of W onto $\alpha$} is the map which fixes $\alpha$ and sends $-\alpha$ to $\alpha$ by relfecting across the the defining wall of $\alpha$. 
+\end{definition}
+
+\begin{proposition}
+    Consider any chambers $x$ and $y$. Let $(x,x_1,...,x_{k-1},y)$ be a minimal gallery from $x$ to $y$. Define $\beta_i$ to be the root which contains $x_{i-1}$ and which does not contain $x_i$. Then the $\beta_i$ are all distinct, and this set is all the roots which contain $x$ but do not contain $y$. So in particular, $d(x,y)=k$ is the size of the set of roots containing $x$ but not containing $y$. 
+\end{proposition}
+
+
+\begin{proposition}
+    Given two chambers $x$ and $y$, a third chamber $z$ lies on a minimal gallery from $x$ to $y$ if and only if it is contained within every root which also contains $x$ and $y$. 
+\end{proposition}
+
+
+Let $R$ be a residue. Now we can define a map, called proj$_Rw$, which maps $w$ to the unique chamber of $R$ closest to $w$. 
+
+
+\begin{proposition}
+    Given a residue $R$ and a chamber $x\in R$, for any chamber $w$ there is a minimal gallery from $x$ to $w$ which passes through proj$_Rw$. 
+\end{proposition}
+
+\begin{lemma}
+    Residues are convex.
+\end{lemma}
+
+\begin{theorem}
+    Given a gallery $\gamma$ of type $f$, $\gamma$ is minimal if and only if $f$ is reduced.
+\end{theorem}
+
+\subsection{Finite Coxeter complexes}
+
+Now we assume that our group $W$ is finite, and so our Coxeter complex is also finite.
+
+\begin{definition}
+    The \ix{diameter}, diam$(W)$, of $W$ is the maximum distance between two chambers of the Coxeter complex. Two chambers are said to be \ix{opposite} if the distance between them is diam$(W)$.
+\end{definition}
+
+\begin{theorem}
+    \begin{enumerate}
+        \item diam$(W) = 1/2\ast |\{${roots of W}$\}|$. 
+        \item Two chambers are contained in no common root if and only if they are opposite.
+        \item For any given chamber, there is a unique opposite chamber.
+        \item Any chamber lies on a minimal gallery between two opposite chambers.
+    \end{enumerate}
+\end{theorem}
+
+
+\section{Buildings}
+
+\begin{definition}
+    Let $(W,S)$ be a Coxeter group with Coxeter matrix $M$, and let $I$ be an indexing set for the generators of $W$. A \ix{building of type M} is a chamber system $\Delta$ over $I$, such that each panel lies on at least two chambers, i.e every $\{i\}$-residue contains at least two elements. We also require a $W$-distance function
+    \[\delta:\Delta\times \Delta \to W,\]
+    such that if $f$ is a reduced word in $S$, then we have that $\delta(x,y)=s_f$ if and only if there is a gallery of type $f$ between $x$ and $y$. 
+\end{definition}
+
+\begin{example}
+    Taking our $W$-distance function to be $\delta(x,y)=x^{-1}y$, Coxeter complexes are buildings.
+\end{example}
+
+
+Some key properties of bulidings are as follows:
+\begin{enumerate}
+    \item $\Delta$ is connected.
+    \item $\delta$ is surjective.
+    \item $\delta(x,y)=\delta(y,x)^{-1}$.
+    \item $\delta(x,y)=s_i$ if and only if $x\neq y$ and $x\sim_i y$.
+    \item For $i\neq j$, $i$- and $j$-adjacency are mutually exclusive.
+    \item For chambers $x$ and $y$, if there is a gallery form $x$ to $y$ of type $f$, and $f$ is homotopic to $g$, then there is a gallery from $x$ to $y$ of type $g$. 
+    \item A gallery if minimal if and only if its type if reduced.
+    \item If there is a gallery of type $f$ from $x$ to $y$, and $f$ is reduced, then this gallery is unique.
+\end{enumerate}
+
+\begin{theorem}
+    Any $J$-residue is a building of type $M_J$. 
+\end{theorem}
+
+\begin{theorem}
+    Any isometry from a subset of $W$ into $\Delta$ can be extended to an isometry of $W$ into $\Delta$.
+\end{theorem}
+
+\begin{corollary}
+    Any two chambers lie in a common apartment.
+\end{corollary}
+
+\begin{theorem}
+    Apartments are convex.
+\end{theorem}
 
 
 \section{Shadows in buildings}
@@ -335,20 +543,150 @@ For instance, trivial orientations are strongly braid invariant, but these orien
 \end{example}
 
 
+\section{Progress on the question}
 
 
+\subsection{Statistics on positive folds}
+
+We now restrict to looking at Weyl chamber orientations over affine Coxeter complexes. This means that we have a complex \sg, with a boundary $\partial$\sg, and that our orientations are induced by a boundary chamber orientation. Here, we can get a partial answer to our main question of calculating the shadow of a given gallery. To do this, we define a $\phi$-valuation map on our set of alcoves. We can then prove a recursive algorithm for calculating the shadow of a gallery.
+
+First, given a gallery, we want to calculate the number of positive folds of this gallery that we can make. A proof of this proposition can be found in \cite{DEL}.
+
+\begin{proposition}
+    Consider the largest element $w_0$ in $W_0$. Given an $x\in W$, and a $\phi$-postive (multi)folding $\gamma$ of $\gamma_x$, we have
+    \[l_R(xy^{-1})\leq |F(\gamma)|\leq l(w_0),\]
+    where $y:=\tau($ft$(\gamma))$.
+\end{proposition}
 
 
+\begin{definition}
+    Let $\mathcal{H}(\Sigma)$ be the set of all hyperplanes contained in our Coxeter complex. For an alcove $c$ of \sg, let $\mathcal{H}(c)$ be the subset of $\mathcal{H}(\Sigma)$ which separates $c$ and the fixed identity alcove 1. Now $\mathcal{H}(c)=\mathcal{H}_{\phi}^+(c)\sqcup \mathcal{H}_{\phi}^-(c)$. 
+\end{definition}
 
 
+\begin{definition}
+    Let $Ch(\Sigma)$ denote the set of all alcoves in \sg. The $\phi$-valuation map is the map $\textnormal{v}_\phi:\textnormal{Ch}(\Sigma)\longrightarrow\mathbb{Z}$, with
+    \[c\mapsto \textnormal{v}_\phi(c):= |\mathcal{H}_{\phi}^+(c)|-|\mathcal{H}_{\phi}^-(c)|.\]
+\end{definition}
 
+\begin{definition}
+    Let $p_\phi : \textnormal{Ch}(\Sigma)\times \mathcal{H}\longrightarrow \{0,1\}$ be the function 
+    \[p_\phi(c,H):= \begin{cases}
+        1 & \textnormal{if $c$ is on a $\phi$-positive side of $H$,}\\
+        0 & \textnormal{otherwise.}
+    \end{cases}\]
+\end{definition}
+
+We now want to relate this function to our $\phi$-valuation map.
+
+\begin{lemma}
+    \[\textnormal{v}_\phi(c)=\sum_{H\in\mathcal{H}(\Sigma)}(p_{\phi}(c,H)-p_\phi(1,H)).\]
+\end{lemma}
+
+\begin{proof}
+    We are assuming that our oritentation $\phi$ is a chamber orientation. So, in particular, this orientation is locally non-trivial. Therefore, every hyperplane $H$ has a positive and negative side. First consider when 1 and $c$ lie on the same side of $H$. Then $H$ is not an element of $\mathcal{H}(c)$. But in this case, $p_\phi(1,H)=p_\phi(c,H)$ and so this hyperplane does not contribute to the above sum. 
+    Now consider when 1 and $c$ lie on opposite sides of $H$. In this case, $H\in \mathcal{H}(c)$. If $c$ lies on the positive side of $H$, then $H\in\mathcal{H}_{\phi}^+(c)$ and $p_\phi(c,H)=1$ and $p_\phi(1,H)=0$, and so $H$ contributes $+1$ to the sum above. Similarly, if $c$ lies on the negative side of $H$, then $H\in\mathcal{H}_{\phi}^-(c)$ and $p_\phi(c,H)=0$ and $p_\phi(1,H)=1$, and so $H$ contributes $-1$ to the sum above. Therefore, we are just counting the size of $\mathcal{H}_{\phi}^+(c)$ minus the size of $\mathcal{H}_{\phi}^-(c)$, which is exactly $\textnormal{v}_\phi(c)$. 
+\end{proof}
+
+
+The next lemma comes from the trivial observation that \[|\mathcal{H}_{\phi}^+(c)|+|\mathcal{H}_{\phi}^+(c)|\geq |\mathcal{H}_{\phi}^+(c)|-|\mathcal{H}_{\phi}^+(c)|.\]
+\begin{lemma}
+    \[l(x)\geq\textnormal{v}_\phi(c_x).\]
+\end{lemma}
+
+\begin{definition}
+    We call an alcove $c$ \ix{dominant} with respect to $\phi$ if $\textnormal{v}_\phi(c)=l(c).$
+\end{definition}
+
+\begin{lemma}
+    \[l(x)=\max_{a\in W_0}\textnormal{v}_{\tilde{\phi}_a}(c_x).\]
+\end{lemma}
+
+\begin{proof}
+    
+\end{proof}
+
+\begin{lemma}
+    Let $\phi\in$Dir$(W)$, $r\in W$ be a reflection across the hyperplane $H_r$ and $x\in W$. Then v$_\phi(x)>$v$_\phi(rx)$ if and only if $x$ lies in the $\phi$-positive side of $H_r$. 
+\end{lemma}
+
+\begin{proof}
+    
+\end{proof}
+
+\subsection{Computation of regular shadows}
+
+We now want to see how we can use this new valuation map to define a recursive definition of a shadow. To do this, we need the next important theorem. A proof of this theorem can be found in \cite[pp.142-143]{SHA}. 
+
+Let Dir$(W)$ represent the set of chambers in the boundary complex $\partial\Sigma$. We call elements of Dir$(W)$ \ix{directions in W}. 
+
+\begin{theorem}
+    Let $\phi\in$Dir$(W)$, $x\in W$ and $s\in S$. Then
+    \begin{enumerate}[(i)]
+        \item If $s$ is in the right descent set $D_R(x)$ of $x$, then we have
+        \[\textnormal{Sh}_\phi(x)=\textnormal{Sh}_\phi(xs)\cdot s \cup \{z\in \textnormal{Sh}_\phi(xs):\textnormal{v}_\phi(zs)<\textnormal{v}_\phi(z)\}.\]
+        \item If $s$ is in the left descent set $D_R(x)$ of $x$, then we have
+        \[\textnormal{Sh}_\phi(x)=\begin{cases}
+            s\cdot \textnormal{Sh}_\phi(sx)\cup \textnormal{Sh}_\phi(sx) &if\textnormal{ v}_\phi(s)<0,\\
+            s\cdot \textnormal{Sh}_\phi(sx) &if \textnormal{ v}_\phi(s)>0.\\
+        \end{cases}\]
+    \end{enumerate}
+\end{theorem}
+
+
+%\begin{definition}
+   % Given $x\in W$, $a\in W_0$ and $\phi\in$ Dir$(W)$, the \ix{partial shadow in local direction a} is the set 
+   % \[\textnormal{Sh}_\phi^a(x):=\{y\in \textnormal{Sh}_\phi(x)|\bar{y}=a\},\]
+   % where $\bar{y}$ is the image of $y$ under the natural projection to the spherical Weyl group $W_0$. 
+%\end{definition}
+
+Now we can use this theorem to show that the next two lemmas both give us recursive defintions for the shadow of a gallery. 
+
+\begin{lemma} (Algorithm L)
+    Let $\phi\in\textnormal{Dir}(W)$ and $x\in W$. Let $w=(s_1,...,s_n)$ be a reduced word for $x$. Let $A_0=\{1\}$ and let
+    \[A_i:=A_{i-1}\cdot s_i\cup \{z\in A_{i-1}|v_\phi(zs)<v_\phi(z)\}.\]
+    Then $A_n=\textnormal{Sh}_\phi(x)$. 
+\end{lemma}
+
+\begin{proof}
+    Using the theorem above, we can show by induction that $A_i=$Sh$_\phi(s_1...s_i)$ for $i=0,...,n$. Firstly, for $i=0$ it is trivial, as Sh$(1)=\{1\}$. Then assume that $A_i=$Sh$_\phi(s_1...s_i)$ for $i<j$. By part (i) of the theorem,\[\begin{aligned}
+    \textnormal{Sh}(s_1...s_j)& = \textnormal{Sh}(s_1...s_js_j)\cdot s_j \cup \{z\in \textnormal{Sh}(s_1...s_js_j): \textnormal{v}_\phi(zs)<\textnormal{v}_\phi(z)\}\\
+        & = \textnormal{Sh}(s_1...s_{j-1})\cdot s_j \cup \{z\in \textnormal{Sh}(s_1...s_{j-1}): \textnormal{v}_\phi(zs)<\textnormal{v}_\phi(z)\}\\
+        & = A_{j-1}\cdot s_j \cup \{z\in A_{j-1}: \textnormal{v}_\phi(zs)<\textnormal{v}_\phi(z)\}\\
+        & = A_j.
+    \end{aligned}\]
+\end{proof}
+
+\begin{lemma} (Algorithm R)
+    Let $\phi\in$ Dir$(W)$ and $x\in W$, with $(s_n,...,s_1)$ a reduced expression for $x$. Let $B_0^\phi:=\{1\}$ and define
+    \[B_i^\phi = \begin{cases}
+        s_iB_{i-1}^{s_i\phi}\cup B_{i-1}^\phi & \textnormal{if v}_\phi(s_i)<0,\\
+        s_iB_{i-1}^{s_i\phi} & \textnormal{if v}_\phi(s_i)>0.
+    \end{cases}\]
+    Then $B^\phi_n=$Sh$_\phi(x)$ for all $\phi\in$ Dir$(W)$. 
+\end{lemma}
+
+\begin{proof}
+    Again, we can use the theorem above to prove by induction that $B^\phi_i=$Sh$_\phi(s_i...s_1)$ for all $i=0,...,n$. For $i=0$ it is trivial as Sh$_\phi(1)=\{1\}$. Now assume that $B^\phi_i=$Sh$_\phi(s_i...s_1)$ for all $i<j$. By part (ii) of the theorem, if $v(s_j)<0$, then
+    \[\begin{aligned}
+        Sh_\phi(s_j...s_1)&=s_j\cdot \textnormal{Sh}_{s_j\phi}(s_js_j...s_1)\cup \textnormal{Sh}_\phi(s_js_j...s_1)\\
+                        &=  s_j\cdot \textnormal{Sh}_{s_j\phi}(s_{j-1}...s_1)\cup \textnormal{Sh}_\phi(s_{j-1}...s_1)\\
+                        &= s_j\cdot B^{s_j\phi}_{j-1}\cup B^{\phi}_{j-1}\\
+                        &= B^\phi_j. 
+    \end{aligned}\]
+    Similarly, if $v(s_j)<0$, then
+    \[\begin{aligned}
+        Sh_\phi(s_j...s_1)& = s_j\cdot \textnormal{Sh}_{s_j\phi}(s_js_j...s_1)\\
+                        & = s_j\cdot \textnormal{Sh}_{s_j\phi}(s_{j-1}...s_1)\\
+                        & = s_j \cdot B^{s_j\phi}_{j-1}\\
+                        & = B^{s_j\phi}_{j}. 
+    \end{aligned}\]
+\end{proof}
 
 
 
 
 \bibliographystyle{plain}
 \bibliography{references}
-
-
 
 \end{document}

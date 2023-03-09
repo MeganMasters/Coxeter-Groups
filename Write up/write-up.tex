@@ -35,43 +35,42 @@
 
 \section{Introduction}
 
-In this project, we will be looking at the geometric objects of buildings. Buildings can be defined in many ways. For instance, we can define buildings using a system of chambers, or Coxeter complexes. We can look at buildings as geometric objects, combinatorial objects, or as representations of groups. These viewpoints give us unique information of the building and group. We will look at galleries in buildings. These are walks around the chambers of a building. We then look at foldings of these galleries, with respect to orientations of our building. An important combinatorial question of foldings is which alcoves of the building can be reached by folding a certain gallery. We call this set the \ix{shadow} of a gallery. We shall see some progress in answering the question of calculating the shadow, and we will discuss tools which could be used to improve these answers. 
+In this project, we will be looking at the geometric object of buildings, and in particular Coxeter complexes. Buildings can be defined in many ways. We can look at buildings as geometric objects, combinatorial objects, or as representations of groups. These viewpoints give us unique information of the building and group. We will look at galleries in buildings, which are walks around the alcoves of a building. We then look at foldings of these galleries, with respect to orientations of our building. An important combinatorial question of foldings is which alcoves of the building can be reached by folding a certain gallery. We call this set the \ix{shadow} of a gallery. We shall see some progress in answering the question of calculating the shadow, and we will discuss tools which could be used to improve these answers. 
 
 
 \section{Chamber systems}
 We first start our exploration of buildings with an abstract chamber system - a set with some equivalence relations on it.  
 
-\begin{definition}\cite[?]{RON}
+\begin{definition}
     A set $C$ is called a \ix{chamber system} over a set $I$ if each $i\in I$ is an equivalence relation on the elements of $C$. Each $i$ partitions our set $C$. We say two elements $x,y\in C$ are \ix{i-adjacent}, and we write $x\sim_{i} y$, if they lie in the same part of the partition, i.e they are equivalent with respect to the equivalence relation corresponding to $i$. The elements of $C$ are called \ix{chambers}. The \ix{rank} of a chamber system is the size of $I$. 
 \end{definition}
 
 
 A very important example is obtained by looking at a group $G$, and a subgroup $B$, and defining the following equivalence relations: 
 
-\begin{example}\cite[?]{RON}
-    Given a group $G$, a subgroup $B$, and an indexing set $I$, let there be a subgroup $B<P_i<G$ for all $i\in I$. Then we take as our chamber set $C$ the left cosets of $B$, and we define an equivalence relation
+\begin{example}
+    Given a group $G$, a subgroup $B$, and an indexing set $I$, let there be a subgroup $B<P_i<G$ for all $i\in I$. Then we take our chamber system $C$ to be the left cosets of $B$, and we define an equivalence relation
     \[gB\sim_{i}hB \textnormal{ if and only if }gP_i=hP_i.\]
 \end{example}
 
 We now look at galleries of a chamber system. These are walks around the chambers, where we only move from one chamber to an adjacent chamber. 
 
-\begin{definition}\cite[?]{RON}
-    A finite sequence $(c_0,...,c_k)$ such that $c_i$ is adjacent to $c_{i+1}$ is called a \ix{gallery}. Its \ix{type} is a word $i_1,...,i_k$ in $I$ such that  $c_{i-1}$ is $i$-adjacent to $c_{i}$. We assume that no two consecutive chambers are equal.
+\begin{definition}
+    A finite sequence $(c_0,...,c_k)$ such that $c_i$ is adjacent to $c_{i+1}$ is called a \ix{gallery}. Its \ix{type} is a word $i_1,...,i_k$ in $I$ such that  $c_{i-1}$ is $i$-adjacent to $c_{i}$. 
 \end{definition}
 
-\begin{definition}\cite[?]{RON}
-    We call $C$ \ix{connected} if there is a gallery between any two chambers. Given a subset $J\subset I$, a \ix{residue of type J} is a $J$-connected component. The \ix{cotype} of $J$ is $I-J$. 
+\begin{definition}
+    We call $C$ \ix{connected} if there is a gallery between any two chambers. Given a subset $J\subset I$, a \ix{residue of type J} is a $J$-connected component, i.e.\ there is a gallery between any two elements of a $J$-connected component whose type is a word in $J$. The \ix{cotype} of $J$ is $I-J$. 
 \end{definition}
 
 
 \subsection{The geometric realisation}
 
-We now want to construct a geometric realisation of this chamber system. This will turn out to be an example of a building. We construct a simplicial complex, where each simplex represents a residue of our chamber system.
+We now want to construct a geometric realisation of this chamber system. We construct a simplicial complex, where each simplex represents a residue of our chamber system.
 
 \begin{definition}
-    Let $R$ be a $J$-residue and $S$ be a $K$-residue. Then $S$ is a \ix{face} of $R$ if $R\subset S$ and $J\subset K$. The \ix{cotype} of $J$ is the set $I-J$. 
+    Let $R$ be a $J$-residue and $S$ be a $K$-residue. Then $S$ is a \ix{face} of $R$ if $R\subset S$ and $J\subset K$. 
 \end{definition}
-
 
 Observe that if $R$ is a residue of cotype $J$, we have
 \begin{enumerate}
@@ -80,50 +79,122 @@ Observe that if $R$ is a residue of cotype $J$, we have
 \end{enumerate}
 
 
-With these observations, we can form a \ix{cell complex} of our chamber system. To do this, we form a vertex for each residue of corank 1. Then, we can associate to each residue of cotype $\{i,j\}$ an edge. From the observation above, this has as its boundary the residues of cotype $\{i\}$ and of cotype $\{j\}$. Then this can be continued inductively....
+With these observations, we can form a \ix{cell complex} of our chamber system. To do this, we form a vertex for each residue of corank 1. Then, we can associate to each residue of cotype $\{i,j\}$ an edge. From the observation above, this has, as its boundary, the residues of cotype $\{i\}$ and of cotype $\{j\}$. 
+
+Then this can be continued inductively. So given a residue $R$ which has cotype of size $r$, we associate a dimension $r-1$ simplex. Now the faces of this simplex are exactly the faces of $R$, as defined above. 
 
 \subsection{$A_n(k)$ Buildings}
 
-A key example of a chamber system is formed by considering the subspaces of an $n+1$ dimensional vector space $V$ over a field $k$. We define the chambers of our chamber system to be the maximal sequences \[V_1\subset V_2\subset ...\subset V_n\] of subspaces of $V$, where $V_i$ has dimension $i$. We can then define adjancency by saying that two sequences $V_1\subset V_2\subset ...\subset V_n$ and $V_1'\subset V_2'\subset ...\subset V_n'$ are $i$-adjacent if and only if $V_j=v_j'$ for all $j\neq i$. Then the residues of type $i$ correspond to 1 spaces in the 2 space $V_{i+1}/V_{i-1}$. 
+A key example of a chamber system is formed by considering the subspaces of an $n+1$ dimensional vector space $V$ over a field $k$. We define the chambers of our chamber system to be the maximal sequences \[V_1\subset V_2\subset ...\subset V_n\] of subspaces of $V$, where $V_i$ has dimension $i$. We can then define adjacency by saying that two sequences $V_1\subset V_2\subset ...\subset V_n$ and $V_1'\subset V_2'\subset ...\subset V_n'$ are $i$-adjacent if and only if $V_j=V_j'$ for all $j\neq i$. Then the residues of type $i$ correspond to 1-spaces in the 2-space $V_{i+1}/V_{i-1}$. 
 
-We then get a geometric realisation of this chamber system. Here, a residue of cotype $J=\{j_1,...,j_r\}$ corresponds to a sequence \[V_{j_1}\subset V_{j_2}\subset ...\subset V_{j_r}.\] This residue has chambers which are maximal flags $V_1'\subset V_2'\subset ...\subset V_n'$ such that $V_j'=v_j$ if $j\in J$. 
+We then get a geometric realisation of this chamber system. Here, a residue of cotype $J=\{j_1,...,j_r\}$ corresponds to a sequence \[V_{j_1}\subset V_{j_2}\subset ...\subset V_{j_r}.\] This residue has chambers which are maximal flags $V_1'\subset V_2'\subset ...\subset V_n'$ such that $V_j'=V_j$ if $j\in J$. 
 
 In particular, residues of cotype $\{i\}$ correspond to the subspaces of $V$. 
 
+\begin{center}
+    
 
-
+\includegraphics[scale=0.7]{Screenshot 2023-03-09 144457.png}\\
+\end{center}
+\tr{I will create my own picture with coloured dots.}
+\begin{example}
+    Here we have the geometric realisation of $A_2(\mathbb{F}_2)$. There are 7 one-dimensional subspaces, represented here as white, and there are 7 two-dimensional subspaces, represented as black.
+\end{example}
 
 \section{Coxeter complexes}
 
-Given a Coxeter group $W$, take as chambers the elements of $W$, and define an $i$-adjancency by $w\sim_iwr_i$, where $\{s_1,...,s_n\}$ are the set of generators of the Coxeter group. If the Coxeter group has Coxeter matrix $M$, we call this building a \ix{Coxeter complex of type M}.\\
+We can now construct a specific type of chamber system which arises from a given Coxeter group. 
 
-\includegraphics[scale=0.7]{Screenshot 2023-02-20 at 14.12.15.png}\\
+Given a Coxeter group $(W,S)$, take as chambers the elements of $W$, and define an $i$-adjacency by $w\sim_iws_i$, where $S=\{s_1,...,s_n\}$ are the set of generators of the Coxeter group. If the Coxeter group has Coxeter matrix $M$, we call this building a \ix{Coxeter complex of type M}.\\
+
+Now we can look at the geometric realisation of this chamber system. 
 
 
-\begin{lemma}
-    The automorphism group of the Coxeter complex is isomorphic to the Coxeter group, and this acts simple-transitively on the set of chambers.
-\end{lemma}
 
 \begin{definition}
-    A \ix{reflection r} of $W$ is a conjugate of the generators of $W$. The wall $M_r$ of a reflection $r$ is the set of simplicies in the Coxeter complex which is fied by $r$ when $r$ acts on the complex by left multiplication. Then $M_r$ is a subcomplex of codimension 1.
+    Let $(W,S)$ be a Coxeter system. Let $S'\subset S$. We define the \textit{standard parabolic subgroup} $W_{s'}$ of $W$ to be the subgroup generated by the subset $S'$. Then $(W_{s'},S')$ is also a Coxeter group. 
 \end{definition}
 
-\begin{theorem}
-    There is a bijection between the set of reflections of a Coxeter group, and the set of walls in the corresponding Coxeter complex.
-\end{theorem}
+This idea corresponds to our more general idea of residues of chamber systems. For Coxeter complexes, we have an explicit definition of the residues as the parabolic subgroups. 
+
+%The vertex set of the geometric realisation of the Coxeter complex corresponds to cosets of the maximal parabolic subgroups. These maximal parabolic subgroups are formed by taking a subset of $S$ with one element removed. So these maximal parabolic subgroups are in bijection with the elements of $S$. 
+
+
+\begin{definition}
+    The maximal simplicies in the simplicial complex are called \textit{alcoves}, and the codimension-one faces are called \textit{panels}.  
+\end{definition}
+
+
+%We note that there is a correspondence between between panels and vertices. This is because a vertex corresponds to an element of the form $xW_{S\backslash \{s\}}$, whilst a panel corresponds to an element of the form $xW_{S\backslash \{s\}}$. 
+
+\begin{definition}
+    If a panel $p$ corresponds to the element $xW_{S\backslash \{s\}}$, we say that $p$ has \ix{type} $s$, and write $\tau(p)=s$. 
+\end{definition}
+
+\includegraphics[scale=0.6]{Screenshot 2023-02-20 at 14.12.15.1.png}\\
+
+\begin{example}
+   Here we are looking at the Coxeter group 
+    \[\tilde{A}_2=\langle s_0,s_1,s_2|s_i=1, (s_1s_2)^3=(s_2s_3)^3=(s_3s_1)^3=1\rangle.\]
+    To form our geometric realisation, we note that our indexing set is $I=\{0,1,2\}$. Then we create a vertex for every maximal parabolic subgroup. This is the set of elements of the form $xW_{\{s_i,s_j\}}$, with $x\in W$ and $i,j\in \{0,1,2\}$. Now we join two vertices 
+\end{example}
 
 Now we can make a very similar definition of a gallery for Coxeter complexes.
 
 \begin{definition}
     Given a Coxeter complex \sg, a \ix{combinatorial gallery} is a sequence
     \[\gamma = (c_0,p_1,c_1,p_2,...,p_n,c_n),\]
-    where the $c_i$ are alcoves and the $p_i$ are panels of \sg, such that $p_i$ is contained in $c_i$ and $c_{i-1}$ for all $i-1,...,n$. The length of a combinatorial gallery $\gamma$ is $n+1$ - this counts how many alcoves there are in the sequence. Then $\gamma$ is \ix{minimal} if there does not exist a shorter gallery starting at $c_0$ and ending at $c_n$. 
+    where the $c_i$ are alcoves and the $p_i$ are panels of \sg, such that $p_i$ is contained in $c_{i-1}$ and $c_{i}$ for all $i-1,...,n$. The length of a combinatorial gallery $\gamma$ is $n+1$ - this counts how many alcoves there are in the sequence. Then $\gamma$ is \ix{minimal} if there does not exist a shorter gallery starting at $c_0$ and ending at $c_n$. 
 \end{definition}
 
-So a gallery is a path between $c_0$ and $c_n$ through alcoves, such that adjacent alcoves in the path share a commmon panel. 
+So a gallery is a path between $c_0$ and $c_n$ through alcoves, such that adjacent alcoves in the path share a commmon panel. This is very similar to how we defined a gallery for a general chamber system. 
+
+\begin{lemma}
+    A Coxeter complex is connected.
+\end{lemma}
+
+\begin{proof}
+    Given any two elements $x=s_{i_1}\hdots s_{i_n}$ and $y=s_{j_1}\hdots s_{j_m}$, we have a gallery
+    \[s_{i_1}\hdots s_{i_n}\sim_{i_n}s_{i_1}\hdots s_{i_{n-1}}\sim_{i_{n-2}}\hdots \sim_{i_n} 1 \sim_{j_1}s_{j_1}\sim_{j_2}s_{j_1}s_{j_2}\sim_{j_3}\hdots\sim_{j_m}s_{j_1}\hdots s_{j_m}.\]
+    So any two chambers are connected by a gallery.
+\end{proof}
+
+
+\begin{lemma}
+    The automorphism group of the Coxeter complex is isomorphic to the Coxeter group, and this acts simple-transitively on the set of chambers.
+\end{lemma}
+
+\begin{proof}
+    $W$ acts on itself by left multiplication. This action clearly preserves the $i$-adjacency defined above. Now consider an automorphism which has a fixed chamber. Then all adjacent chambers must be fixed. This is because each rank 1 residue must have exactly two chambers, by definition. So, as Coxeter complexes are connected, we must fix the whole of the complex. So this action is simple-transitive. 
+\end{proof}
+
+\subsection{Reflections and walls}
+\begin{definition}
+    A \ix{reflection r} of $W$ is a conjugate of the generators of $W$. The wall $M_r$ of a reflection $r$ is the set of simplicies in the Coxeter complex which is fixed by $r$ when $r$ acts on the complex by left multiplication. Then $M_r$ is a subcomplex of codimension 1.
+\end{definition}
+
+By this definition, a panel lies in a wall $M_r$ if and only if it is fixed by the reflection $r$. 
+
+\begin{example}
+    In the case that the Coxeter complex is infinite and affine, the walls correspond to hyperplanes of the geometric realisation. 
+\end{example}
+
+\begin{theorem}
+    There is a bijection between the set of reflections of a Coxeter group, and the set of walls in the corresponding Coxeter complex.
+\end{theorem}
+
+\begin{proof}
+    Let $p$ be an $i$-panel of a chamber $x$. Then the unique reflection which fixes $p$ and interchanges $x$ and $xs_i$ is the map $r=xs_ix^{-1}$. So the map from reflections to walls is a bijection.
+\end{proof}
+
+
+
+\subsection{Roots}
+
+We now want to consider the halfplanes defined by our walls.
 
 \begin{definition}
-    A gallery $(c_0,...,c_k)$ \ix{crosses } $M_r$ if there is an $i$ such that $M_r$ interchanges $c_{i-1}$ and $c_i$. 
+    A gallery $(c_0,...,c_k)$ \ix{crosses} $M_r$ if there is an $i$ such that $M_r$ interchanges $c_{i-1}$ and $c_i$. 
 \end{definition}
 
 \begin{lemma}
@@ -132,6 +203,7 @@ So a gallery is a path between $c_0$ and $c_n$ through alcoves, such that adjace
         \item Every gallery from two alcoves $x$ and $y$ have the same parity of crossings of any wall.
     \end{enumerate}
 \end{lemma}
+
 
 \begin{definition}
     Each hyperplane splits an apartment into two half-apartments called \ix{roots}. If $\alpha$ is one root, we denote the other corresponding root by $-\alpha$. 
@@ -156,9 +228,8 @@ So a gallery is a path between $c_0$ and $c_n$ through alcoves, such that adjace
 \end{definition}
 
 \begin{proposition}
-    Consider any chambers $x$ and $y$. Let $(x,x_1,...,x_{k-1},y)$ be a minimal gallery from $x$ to $y$. Define $\beta_i$ to be the root which contains $x_{i-1}$ and which does not contain $x_i$. Then the $\beta_i$ are all distinct, and this set is all the roots which contain $x$ but do not contain $y$. So in particular, $d(x,y)=k$ is the size of the set of roots containing $x$ but not containing $y$. 
+    Consider any two chambers $x$ and $y$. Let $(x,p_1,x_1,...,x_{k-1,}p_k,y)$ be a minimal gallery from $x$ to $y$. Define $\beta_i$ to be the root which contains $x_{i-1}$ and which does not contain $x_i$. Then the $\beta_i$ are all distinct, and this set is all the roots which contain $x$ but do not contain $y$. So in particular, $d(x,y)=k$ is the size of the set of roots containing $x$ but not containing $y$. 
 \end{proposition}
-
 
 \begin{proposition}
     Given two chambers $x$ and $y$, a third chamber $z$ lies on a minimal gallery from $x$ to $y$ if and only if it is contained within every root which also contains $x$ and $y$. 
@@ -179,6 +250,7 @@ Let $R$ be a residue. Now we can define a map, called proj$_Rw$, which maps $w$ 
 \begin{theorem}
     Given a gallery $\gamma$ of type $f$, $\gamma$ is minimal if and only if $f$ is reduced.
 \end{theorem}
+
 
 \subsection{Finite Coxeter complexes}
 
@@ -201,9 +273,9 @@ Now we assume that our group $W$ is finite, and so our Coxeter complex is also f
 \section{Buildings}
 
 \begin{definition}
-    Let $(W,S)$ be a Coxeter group with Coxeter matrix $M$, and let $I$ be an indexing set for the generators of $W$. A \ix{building of type M} is a chamber system $\Delta$ over $I$, such that each panel lies on at least two chambers, i.e every $\{i\}$-residue contains at least two elements. We also require a $W$-distance function
+    Let $(W,S)$ be a Coxeter group with Coxeter matrix $M$, and let $I$ be an indexing set for the generators $S$ of $W$. A \ix{building of type M} is a chamber system $\Delta$ over $I$, such that each panel lies on at least two chambers, i.e.\ every $\{i\}$-residue contains at least two elements. We also require a $W$-distance function
     \[\delta:\Delta\times \Delta \to W,\]
-    such that if $f$ is a reduced word in $S$, then we have that $\delta(x,y)=s_f$ if and only if there is a gallery of type $f$ between $x$ and $y$. 
+    such that if $f$ is a reduced word in $S$, then we have that $\delta(x,y)=s_f$ if and only if there is a gallery of type $f$ between $x$ and $y$. We denote a building by $\Sigma=\Sigma(W,S)$. 
 \end{definition}
 
 \begin{example}
@@ -211,18 +283,20 @@ Now we assume that our group $W$ is finite, and so our Coxeter complex is also f
 \end{example}
 
 
-Some key properties of bulidings are as follows:
+Some key properties of buildings are as follows:
 \begin{enumerate}
     \item $\Delta$ is connected.
     \item $\delta$ is surjective.
     \item $\delta(x,y)=\delta(y,x)^{-1}$.
     \item $\delta(x,y)=s_i$ if and only if $x\neq y$ and $x\sim_i y$.
     \item For $i\neq j$, $i$- and $j$-adjacency are mutually exclusive.
-    \item For chambers $x$ and $y$, if there is a gallery form $x$ to $y$ of type $f$, and $f$ is homotopic to $g$, then there is a gallery from $x$ to $y$ of type $g$. 
-    \item A gallery if minimal if and only if its type if reduced.
+    \item For chambers $x$ and $y$, if there is a gallery from $x$ to $y$ of type $f$, and $f$ is homotopic to $g$, then there is a gallery from $x$ to $y$ of type $g$. 
+    \item A gallery if minimal if and only if its type is reduced.
     \item If there is a gallery of type $f$ from $x$ to $y$, and $f$ is reduced, then this gallery is unique.
 \end{enumerate}
 
+
+\subsection{Properties of buildings}
 \begin{theorem}
     Any $J$-residue is a building of type $M_J$. 
 \end{theorem}
@@ -239,15 +313,29 @@ Some key properties of bulidings are as follows:
     Apartments are convex.
 \end{theorem}
 
+\section{Retractions of buildings}
 
-\section{Shadows in buildings}
+\begin{definition}
+    Let $A$ be a chosen apartment in a building $X$, and let $c\in A$ be an alcove. We define the \ix{retraction from X to A based at c} as the map $r_{A,c}:X\longrightarrow A$ where we send any alcove $d$ to its image under the isomorphism from the apartment containing both $c$ and $d$ to $A$. 
+\end{definition}
 
-We want to consider 
+\includegraphics[scale=0.7]{Screenshot 2023-02-15 at 13.32.45.png}\\
 
-\subsection{Orientations}
+\begin{definition}
+    Let $A$ be a chosen apartment in an affine building $X$, and let $C\in \partial A$ be a chamber at infinity of the apartment. We define the \ix{retraction from X to A based at C} as the map $\rho_{A,C}:X\longrightarrow A$, which sends an alcove $d$ to its image under the isomorphism from the apartment containing both $d$ and a Weyl chamber representing $C$ to $A$. 
+\end{definition}
 
-\begin{definition}\cite[?]{SHA}
-    An \ix{orientation} $\phi$ of $\Sigma$ is a map from the set of pairs $(p,c)$, where $p$ is a panel and $c$ is an alcove containing $p$, to the set $\{+1,-1\}$. If $\phi (p,c)=+1$, then we say that $c$ is on the $\phi$-\ix{positive side}, otherwise we say that $c$ is on the $\phi$-\ix{negative side}. 
+
+\includegraphics[scale=0.7]{Screenshot 2023-02-15 at 13.31.58.png}
+
+
+\section{Orientations of buildings}
+
+We want to consider an orientation on the panels of our buildings. Ultimately, we want to define foldings of galleries, and we only want to consider postive foldings with respect to some orientation.
+
+
+\begin{definition}
+    An \ix{orientation} $\phi$ of a building $\Sigma$ is a map from the set of pairs $(p,c)$, where $p$ is a panel and $c$ is an alcove containing $p$, to the set $\{+1,-1\}$. If $\phi (p,c)=+1$, then we say that $c$ is on a $\phi$-\ix{positive side} of $p$, otherwise we say that $c$ is on a $\phi$-\ix{negative side}. 
 \end{definition}
 
 
@@ -255,32 +343,32 @@ We want to consider
     The trivial positive orientation is the map which sends all pairs to $+1$. Similarly, the trivial negative orientation is the map which sends all pairs to $-1$. 
 \end{example}
 
-Often, we do not want to have orientations which locally behave like trivial orientations. Hence, we define the following concept:
+Often, we do not want to have orientations which locally behave like trivial orientations. Hence, we define the following concepts:
 
-\begin{definition}\cite[?]{SHA}
+\begin{definition}
     Given an orientation $\phi$ of \sg, we have
     \begin{enumerate}
         \item $\phi$ is \ix{locally non-negative} if, for each panel, there is at least one alcove which is on the $\phi$-positive side.
-        \item $\phi$ is \ix{locally non-trivial} if, for every panel, there is exactly one alcove which is on the $\phi$-positive side.
+        \item $\phi$ is \ix{locally non-trivial} if, for each panel, there is exactly one alcove which is on the $\phi$-positive side.
     \end{enumerate}
 \end{definition}
 
 
 There is a natural action of $W$ on the set of all possible orientations of \sg, induced by the action of $W$ on on the alcoves and panels. It is defined as 
-\[(x\cdot\phi)(p,c):=(x^{-1}p,x^{-1}c).\]
+\[(x\cdot\phi)(p,c):=\phi(x^{-1}p,x^{-1}c).\]
 
-\begin{definition}\cite[?]{SHA}
-    Given an orientation $\phi$ of \sg, we say that $\phi$ is \ix{wall consistent} if, given any wall $H$, for all pairs $c,d$ of alcoves which lie in the same halfspace of $H$, with panels $p$ and $q$ respectively, we have that $\phi(p,c)=\phi(q,d)$. If our orientation is wall consistent, we can then define the \ix{positive side} $H^{\epsilon}$ of $H$ as the half-space such that all alcoves $c$ in $H^{\epsilon}$ have $\phi(p,c)=+1$ for all panels of $c$. Then the \ix{negative side} is defined similarly.
+\begin{definition}
+    Given an orientation $\phi$ of \sg, we say that $\phi$ is \ix{wall consistent} if, given any wall $H$, for all pairs $c,d$ of alcoves which lie in the same halfspace of $H$, with panels $p$ and $q$ lying in $H$, we have that $\phi(p,c)=\phi(q,d)$. If our orientation is wall consistent, we can then define the \ix{positive side} $H^{\epsilon}$ of $H$ as the half-space such that all alcoves $c$ in $H^{\epsilon}$ have $\phi(p,c)=+1$ for all panels of $c$. Then the \ix{negative side} is defined similarly.
 \end{definition}
 
 We want to look at several natural ways to orient a Coxeter complex. First, we will look at an orientation which is derived from either a choice of alcove, or a choice of panel. This orientation works for any Coxeter group.
 
-\begin{definition}\cite[?]{SHA}
+\begin{definition}
     Choose a fixed alcove $c$ in \sg. Now given any alcove $d$, and panel $p$, we define their orientation as $\phi(p,d)=+1$ if and only if $c$ and $d$ lie in the same side of the wall which is spanned by $p$. We call this orientation the \ix{alcove orientation towards c}.
 \end{definition}
 
 
-\begin{definition}\cite[?]{SHA}
+\begin{definition}
     Choose a fixed simplex $b$ in \sg. Now given any alcove $c$, and panel $p$ in $c$, we define their orientation as $\phi(q,c)=+1$ if and only if either $c$ and $b$ lie in the same side of the wall $H$ containing $p$, or if $b$ lies inside $H$. We call this orientation the \ix{simplex orientation towards b}.
 \end{definition}
 \begin{example}
@@ -288,7 +376,7 @@ We want to look at several natural ways to orient a Coxeter complex. First, we w
 \end{example}
 \includegraphics[scale=0.6]{Screenshot 2023-02-03 102201.png}\\
 
-\begin{lemma}\cite[?]{SHA}
+\begin{lemma}
     Consider a Coxeter group $(W,S)$ with Coxeter complex \sg. We have the following:
     \begin{enumerate}[(i)]
         \item If $\phi$ is a simplex orientation of \sg, then $\phi$ is wall consistent and locally non-negative.
@@ -331,15 +419,15 @@ If $\phi$ is a periodic orientation, then we have a natural orientation induced 
 \end{lemma}
 
 \begin{proof}
-    Consider a wall $M$ in the boundary $\partial\Sigma$. This corresponds to a set of parallel walls in $\Sigma$. Consider a chamber $a\in \partial\Sigma$, which has a panal $p$ lying in $M$. Now we can find a Weyl chamber $C_a$ of $\Sigma$ which represents $a$. This has a bounding wall $H_M$ in the set of parallel walls corresponding to $M$. Let $c$ be the alcove at the tip of $C_a$. So $c$ has a panel $q$ which lies in $H_M$. We now define the orientation of the boundary by 
+    Consider a wall $M$ in the boundary $\partial\Sigma$. This corresponds to a set of parallel walls in $\Sigma$. Consider a chamber $a\in \partial\Sigma$, which has a panel $p$ lying in $M$. Now we can find a Weyl chamber $C_a$ of $\Sigma$ which represents $a$. This has a bounding wall $H_M$ in the set of parallel walls corresponding to $M$. Let $c$ be the alcove at the tip of $C_a$. So $c$ has a panel $q$ which lies in $H_M$. We now define the orientation of the boundary by 
     \[\partial \phi (a,p)= \phi (c,q).\]
     This is well-defined as $\phi$ is periodic, so the choice of $C_a$ does not affect the orientation. Also, as $\phi$ is periodic, this orientation is wall-consistent. 
-    If $\phi$ is locally non-negative, then given a panel $p$ of $\Sigma$, we can find an alcove $c$ such that $\phi(c,p)=+1$. Then under the projection map from $\Sigma$ to the boundary $\partial\Sigma$, we get a chamber $d$ and panel $q$ such that $\partial\Sigma(d,q)=+1$. So $\partial\phi$ is locally non-negative. The same argument can be made to show that if $\phi$ is locally non-trivial, then $\partial\phi$ is also locally non-trivial. 
+    If $\phi$ is locally non-negative, then given a panel $q$ of $\Sigma$, we can find an alcove $d$ such that $\phi(d,q)=+1$. Then under the projection map from $\Sigma$ to the boundary $\partial\Sigma$, we get a chamber $a$ and panel $p$ such that $\partial\Sigma(a,p)=+1$. So $\partial\phi$ is locally non-negative. The same argument can be made to show that if $\phi$ is locally non-trivial, then $\partial\phi$ is also locally non-trivial. 
 \end{proof}
 
 
 \begin{lemma}
-    Given a wall-consistent orientation $\phi$ of the boundary complex $\partial\Sigma$, there exists a unique periodic orientation $\tilde{\phi}$ of \sg, which induces the orientation $\phi$. 
+    Given a wall-consistent orientation $\phi$ of the boundary complex $\partial\Sigma$, there exists a unique periodic orientation $\tilde{\phi}$ of \sg which induces the orientation $\phi$. 
 \end{lemma}
 
 \begin{proof}
@@ -347,7 +435,7 @@ If $\phi$ is a periodic orientation, then we have a natural orientation induced 
 \end{proof}
 
 \begin{definition}
-    Let $\sigma$ be a chamber of the boundary $\Delta$ of a Coxeter complex \sg. Then we form an orientation $\phi_{\sigma}$ on the boundary $\Delta$. The \ix{Weyl chamber orientation} on $\Sigma$ is the induced orientation by $\phi_{\sigma}$. 
+    Let $\sigma$ be a chamber of the boundary $\Delta$ of a Coxeter complex \sg. Then we form an orientation $\phi_{\sigma}$ on the boundary $\Delta$. The \ix{Weyl chamber orientation} on $\Sigma$ is the oritentation on $\Sigma$ which induces $\phi_{\sigma}$. 
 \end{definition}
 
 
@@ -357,14 +445,14 @@ If $\phi$ is a periodic orientation, then we have a natural orientation induced 
 
 
 \begin{definition}
-    Given a gallery $\gamma$ of \sg, we say that $\gamma$ is \ix{folded (or stammering)} if, within $\gamma$, we can find an index $i$ such that $c_i=c_{i-1}$. Then we say that $\gamma$ has a \ix{fold} at panel $p_i$. Otherwise, we say that $\gamma$ is \ix{unfolded (or non-stammering)}.  
+    Given a gallery $\gamma$ of \sg, we say that $\gamma$ is \ix{folded} (or \ix{stammering}) if, within $\gamma$, we can find an index $i$ such that $c_i=c_{i-1}$. Then we say that $\gamma$ has a \ix{fold} at panel $p_i$. Otherwise, we say that $\gamma$ is \ix{unfolded} (or \ix{non-stammering}).  
 \end{definition}
 
 \begin{definition}
     Given a gallery $\gamma$, define the set F$(\gamma)$ to be the subset of $\{1,...,n\}$ such that $i\in$ F$(\gamma)$ if and only if $\gamma$ has a fold at panel $p_i$. 
 \end{definition}
 
-To represent a gallery, we draw a path which passes through every chamber and panel in the gallery of the Euclidean representation of our Coxeter complex. We draw an arrow towards the sink of our gallery. 
+To represent a gallery, we draw a path which passes through every chamber and panel in the gallery of the geometric representation of our Coxeter complex. We draw an arrow towards the end alcove of our gallery. 
 
 \includegraphics[scale=0.6]{Screenshot 2023-02-03 111653.png}\\
 
@@ -372,8 +460,15 @@ To represent a gallery, we draw a path which passes through every chamber and pa
     Given a gallery $\gamma$ in \sg, and an orientation $\phi$, we say that $\gamma$ is \ix{positively folded} with respect to $\phi$ if, whenever $\gamma$ is folded at position $i$, $\phi(p_i,c_i)=+1$.  We can similarly define \ix{negatively folded}.
 \end{definition}
 
+We note that, as $W$ has a natural left action on \sg, $W$ also acts on the set of galleries in \sg. For instance, $x\in W$ sends $\gamma = (c_0,p_1,c_1,...,p_n,c_n)$ to the gallery $\gamma = (xc_0,xp_1,xc_1,...,xp_n,xc_n)$. 
 
-\subsection{Galleries and Words}
+\begin{lemma} 
+    Consider an affine Coxeter system $(W,S)$ with a Coxeter complex \sg. Let $a$ be a chamber in the boundary complex $\partial\Sigma$. Now a gallery $\gamma$ is $\phi_a$-positively folded if and only if $x\cdot \gamma$ is $\phi_a$-positively folded. So the action of $W$ on $\partial\Sigma$ preserves the condition of being '$\phi_a$-positively folded'.
+\end{lemma}
+
+\subsection{Galleries and words}
+
+We can now define the type and decorated type of a gallery. Note that here we use tilde notation to denote a decorated word, but in other texts, such as \cite{SHA}, they use hat notation to denote the decorated word.
 
 \begin{definition}
     Consider a gallery $\gamma = (c_0,p_1,c_1,...,p_n,c_n)$. Let panel $p_i$ of $\gamma$ have type $s_{j_i}\in S$. We define its \ix{type} $\tau(\gamma)$ as the word 
@@ -381,11 +476,10 @@ To represent a gallery, we draw a path which passes through every chamber and pa
     We denote by $\Gamma_{\phi}^+(w)$ the set of all $\phi$-positively folded galleries which have type $w$. 
 \end{definition}
 
-We can now define the type and decorated type of a gallery. Note that here we use tilde notation to denote a decorated word, but in other texts, such as \cite{SHA}, they use hat notation to denote the decorated word.
 \begin{definition}
-    The \ix{decorated type} $\hat\tau(\gamma)$ of a gallery $\gamma = (c_0,p_1,c_1,...,p_n,c_n)$ is the decorated word
+    The \ix{decorated type} $\tilde\tau(\gamma)$ of a gallery $\gamma = (c_0,p_1,c_1,...,p_n,c_n)$ is the decorated word
     \[\tilde\tau(\gamma):= s_{j_1}...\tilde{s_{j_i}}...s_{j_n},\]
-    where we place a hat on the elements $s_{j_i}$ of the word which correspond to a fold $c_{i-1}=c_i$ of the gallery. We denote by $\Gamma_{\phi}^+(\tilde{w})$ the set of all $\phi$-positively folded galleries which have decorated type $\tilde{w}$.
+    where we place a tilde on the elements $s_{j_i}$ of the word which correspond to a fold $c_{i-1}=c_i$ of the gallery. We denote by $\Gamma_{\phi}^+(\tilde{w})$ the set of all $\phi$-positively folded galleries which have decorated type $\tilde{w}$.
 \end{definition}
 
 
@@ -398,7 +492,7 @@ We can now define the type and decorated type of a gallery. Note that here we us
 \end{lemma}
 
 \begin{proof}
-    Given a word $s_1...s_n$ in $S$, we can define an unfolded gallery starting at $c_0$ by multiplying $c_0$ by $s_1$, and in general define $c_i$ by multiplying $c_{i-1}$ by $s_{i}$, and set $p_i$ to be the unique panel contained in both $c_{i-1}$ and $c_i$. This gives our bijection for part (i). 
+    Given a word $s_1\hdots s_n$ in $S$, we can define an unfolded gallery starting at $c_0$ by multiplying $c_0$ by $s_1$, and in general define $c_i$ by multiplying $c_{i-1}$ by $s_{i}$, and set $p_i$ to be the unique panel contained in both $c_{i-1}$ and $c_i$. This gives our bijection for part (i). 
     Now given a decorated word in $S$, we can define a general gallery by multiplying $c_{i-1}$ by $s_{i}$, as above, if $s_{i}$ is not decorated. If $s_{i}$ is decorated, then let $c_i=c_{i-1}$, and let the panel $p_i$ be the unique panel of $c_i$ which has type $s_i$. This gives the bijection for part (ii). 
 \end{proof}
 
@@ -415,7 +509,7 @@ The next lemma gives some easy results from the definitions of type and decorate
 We want to be able to characterise the last alcove in a gallery. We do this by constructing another gallary which removes any folds from our original gallery. This leads to an unfolded gallery which has shorter length than the original gallery.
 
 \begin{definition}
-    Consider a gallery $\gamma = (c_0,p_1,c_1,...,p_n,c_n)$ in \sg. We create a new gallery, called the \ix{footprint} \ix{ft}$(\gamma)$ \ix{of} $\gamma$, by deleting all pairs $p_i,c_i$ such that the letter $s_i$ has a hat in $\hat{\tau}(\gamma)$. 
+    Consider a gallery $\gamma = (c_0,p_1,c_1,...,p_n,c_n)$ in \sg. We create a new gallery, called the \ix{footprint} ft$(\gamma)$ \ix{of} $\gamma$, by deleting all pairs $p_i,c_i$ such that the letter $s_i$ has a hat in $\hat{\tau}(\gamma)$. 
 
 \end{definition}
 
@@ -435,18 +529,9 @@ Now we have defined galleries, and in particular folded galleries, we want to be
 
 \includegraphics[scale=0.6]{Screenshot 2023-02-03 153412.png}\\
 
-We note that, as $W$ has a natural left action on \sg, $W$ also acts on the set of galleries in \sg. For instance, $x\in W$ sends $\gamma = (c_0,p_1,c_1,...,p_n,c_n)$ to the gallery $\gamma = (xc_0,xp_1,xc_1,...,xp_n,xc_n)$. 
-
-\begin{lemma} MOVE THIS LEMMA
-    Consider an affine Coxeter system $(W,S)$ with a Coxeter complex \sg. Let $a$ be a chamber in the boundary complex $\partial\Sigma$. Now a gallery $\gamma$ is $\phi_a$-positively folded if and only if $x\cdot \gamma$ is $\phi_a$-positively folded. So the action of $W$ on $\partial\Sigma$ preserves the condition of being '$\phi_a$-positively folded'.
-\end{lemma}
-
-\begin{proof}
-    
-\end{proof}
 
 \begin{definition}
-    Consider a gallery $\gamma = (c_0,p_1,c_1,...,p_n,c_n)$. Let $H_i$ be the hyperplane containing the panel $p_i$, and let $r_i$ be the reflection across $H_i$. For $i=1,...,n$, let
+    Consider a gallery $\gamma = (c_0,p_1,c_1,...,p_n,c_n)$. Let $H_i$ be the wall containing the panel $p_i$, and let $r_i$ be the reflection across $H_i$. For $i=1,...,n$, let
     \[\gamma^i:=(c_o,p_1,...,p_i,r_ic_i,r_ip_{i+1},r_ic_{i+1},...,r_ip_n,r_ic_n).\]
     If $\gamma$ was folded at panel $p_i$, we call $\gamma^i$ a \ix{unfolding of }$\gamma$ at $p_i$. Otherwise, we call it a \ix{folding}.
 \end{definition}
@@ -456,21 +541,21 @@ We note that, as $W$ has a natural left action on \sg, $W$ also acts on the set 
 \end{lemma}
 
 \begin{proof}
-    This is just a result of the definition of the type of a panel, which is invariant under reflections along walls. Also, we note that $r_ir_i=1$, as reflections are self-inverse, so applying a fold twice at panel $p_i$ will first achieve $(c_o,p_1,...,p_i,r_ic_i,r_ip_{i+1},r_ic_{i+1},...,r_ip_n,r_ic_n)$, and will then achieve $(c_o,p_1,...,p_i,r_ir_ic_i,r_ir_ip_{i+1},r_ir_ic_{i+1},...,r_ir_ip_n,r_ir_ic_n)=(c_0,p_1,...,p_n,c_n)$. Hence, $(\gamma^i)^i=\gamma$.
+    This is just a result of the definition of the type of a panel, which is invariant under reflections along walls. Also, we note that $r_ir_i=1$, as reflections are self-inverse, so applying a fold twice at panel $p_i$ will first achieve $(c_o,p_1,\hdots,p_i,r_ic_i,r_ip_{i+1},r_ic_{i+1},...,r_ip_n,r_ic_n)$, and will then achieve $(c_o,p_1,...,p_i,r_ir_ic_i,r_ir_ip_{i+1},r_ir_ic_{i+1},...,r_ir_ip_n,r_ir_ic_n)=(c_0,p_1,...,p_n,c_n)$. Hence, $(\gamma^i)^i=\gamma$.
 \end{proof}
 
 \begin{lemma}
-    For all $i,j=1,...,n$, $(\gamma^i)^j=(\gamma^j)^i$, i.e. foldings are commutative.
+    For all $i,j=1,\hdots,n$, $(\gamma^i)^j=(\gamma^j)^i$, i.e.\ foldings are commutative.
 \end{lemma}
 
 \begin{proof}
     As we have already dealt with the case that $i=j$, we can assume that $i<j$. Let $r$ be the reflection along the wall containing $p_i$, and let $t$ be the reflection along the wall containing $p_j$. Then we have, by the definition of (un)-folding,
-    \[(\gamma^j)^i=((c_0,p_1,c_1,...,c_{i-1},p_i,rc_i,...,rp_j,rtc_j,...,rtc_n)).\]
+    \[(\gamma^j)^i=(c_0,p_1,c_1,\hdots,c_{i-1},p_i,rc_i,...,rp_j,rtc_j,...,rtc_n).\]
     Also, if we let $u$ be the reflection along the wall containing $rp_j$, we have
-    \[(\gamma^i)^j=((c_0,p_1,c_1,...,c_{i-1},p_i,rc_i,...,rp_j,urc_j,...,urc_n)).\]
-    Let us calculate the maps $r$, $t$ and $u$. Given a panel $p$ of an alocve $c$, the reflection along the wall containing $p$ is given by the multiplication map $c\tau(p)c^{-1}$. Hence,
+    \[(\gamma^i)^j=(c_0,p_1,c_1,...,c_{i-1},p_i,rc_i,...,rp_j,urc_j,...,urc_n).\]
+    Let us calculate the maps $r$, $t$ and $u$. Given a panel $p$ of an alcove $c$, the reflection along the wall containing $p$ is given by the multiplication map $c\tau(p)c^{-1}$. Hence,
     \[r=c_{i-1}\tau(p_i)c_{i-1}^{-1}, t=c_{j-1}\tau(p_j)c_{j-1}^{-1}, \textnormal{ and } u=(rc_{j-1})\tau(rp_j)(rc_{j-1})^{-1}.\]
-    Now by lemma ..., reflections preserve type, so we have that $\tau(rp_j)=\tau(p_j)$. Then
+    Now by a previous lemma, reflections preserve type, so we have that $\tau(rp_j)=\tau(p_j)$. Then
     \[\begin{aligned}
         ur & =(rc_{j-1})\tau(rp_j)(rc_{j-1})^{-1}c_{i-1}\tau(p_i)c_{i-1}^{-1}\\
            & =r(c_{j-1}\tau(p_j)c_{j-1}^{-1})(c_{i-1}\tau(p_i)c_{i-1}^{-1})(c_{i-1}\tau(p_i)c_{i-1}^{-1})\\
@@ -489,7 +574,7 @@ Because of this property, we are able to define a \ix{multifolding} with respect
 
 Now we fix an alcove of our Coxeter complex, and call this 1. Then, for any word $w$ with elements in $S$, we let $\gamma_w$ be the unique unfolded gallery which has type $w$ and starts at 1. Now we write
 \begin{enumerate}
-    \item $\gamma \rightharpoonup \eta$ if $\gamma$ and $\eta$ are galleries such that $\eta = \gamma^I$ for some index set $I$,
+    \item $\gamma \rightharpoonup \eta$ if $\gamma$ and $\eta$ are galleries such that $\eta = \gamma^I$ for some index set $I$, i.e.\ there is a folding of $\gamma$ which gives $\eta$.
     \item $w\rightharpoonup u$ if $w$ and $u$ are words in $S$ such that there is a folding of $\gamma_w$ which has footprint $u$.
     \item $w\rightharpoonup x$ if $x$ is an element of $W$ such that there is a folding of $\gamma_w$ which has end alcove $c_x$. 
 \end{enumerate}
@@ -498,7 +583,7 @@ We denote by $A\stackrel{\phi}{\rightharpoonup} B$ if the respective gallery is 
 
 \section{Braid invariant orientations}
 
-Two reduced words in $S$ represent the same element in the Coxeter group if and only if they differ by a squence of braid moves CITE. A braid move replaces a subword $s_is_j...$ of length $m_{ij}$ with the string $s_js_i...$, again of length $m_{ij}$. We want to define the concept of braid invariant orientations, so we can later conclude that, if we have a braid invariant orientation, our shadows of a gallery do not depend on the chosen word of $S$ representing the end alcove. 
+Two reduced words in $S$ represent the same element in the Coxeter group if and only if they differ by a squence of braid moves. A braid move replaces a subword $s_is_j\cdots$ of length $m_{ij}$ with the string $s_js_i\cdots$, again of length $m_{ij}$. We want to define the concept of braid invariant orientations, so we can later conclude that, if we have a braid invariant orientation, our shadows of a gallery do not depend on the chosen word of $S$ representing the end alcove. 
 
 \begin{definition}
     Consider a Coxeter system $(W,S)$ and a corresponding Coxeter complex \sg. Let $\phi$ be an orientation on \sg. Then we say that $\phi$ is \ix{braid invariant} if, given any two braid equivalent words $w,w'$ in $S$ and any $x\in W$, $w\stackrel{\phi}{\rightharpoonup} x$ if and only if $w'\stackrel{\phi}{\rightharpoonup} x$. Then if $y\phi$ is braid invariant for all $y\in W$, $\phi$ is called \ix{strongly braid invariant}. 
@@ -529,22 +614,21 @@ For instance, trivial orientations are strongly braid invariant, but these orien
     Consider the trivial positive orientation $\phi_+$, and the alcove orientation $\phi_1$ towards 1. For $x,y\in W$, $x\geq y$ if and only if $x\stackrel{\phi_+}{\rightharpoonup} y$, if and only if $x\stackrel{\phi_1}{\rightharpoonup} y$.
 \end{proposition}
 
-\begin{proof}
-    
-\end{proof}
-\bigbreak
+Now this proposition is telling us that actually both the trivial positive orientation and the alcove orientation towards 1 are not interesting orientations to study in terms of the shadow. 
+
 \begin{center}
     \includegraphics[scale=1]{Screenshot 2023-03-07 133912.png}\\
 \end{center}
 
 
 \begin{example}
-    The picture above shows the shadow for an alcove of a Coxeter complex of type $\tilde{A}_2$, with respect to the trivial positive orientation. By the proposition above, this is also the shadow with respect to the alcove orientation towards 1. Furthermore, the alcoves in this shadow are all the elements $y$ of the Coxeter group such that $y\leq x$, and so it is the Bruhat interval $[1,x]$. 
+    The picture above shows the shadow for an alcove of a Coxeter complex of type $\tilde{A}_2$, with respect to the trivial positive orientation. By the proposition above, this is also the shadow with respect to the alcove orientation towards 1. Furthermore, the alcoves in this shadow are all the elements $y$ of the Coxeter group such that $y\leq x$ with respect to the Bruhat ordering, and so it is the Bruhat interval $[1,x]$. 
 \end{example}
 
 
-\section{Progress on the question}
+\section{Progress on calculating shadows}
 
+So now our main question becomes whether we can calculate the shadow of a given gallery. This can only be partially answered, and only with specific orientations. 
 
 \subsection{Statistics on positive folds}
 
@@ -560,12 +644,12 @@ First, given a gallery, we want to calculate the number of positive folds of thi
 
 
 \begin{definition}
-    Let $\mathcal{H}(\Sigma)$ be the set of all hyperplanes contained in our Coxeter complex. For an alcove $c$ of \sg, let $\mathcal{H}(c)$ be the subset of $\mathcal{H}(\Sigma)$ which separates $c$ and the fixed identity alcove 1. Now $\mathcal{H}(c)=\mathcal{H}_{\phi}^+(c)\sqcup \mathcal{H}_{\phi}^-(c)$. 
+    Let $\mathcal{H}(\Sigma)$ be the set of all walls contained in our Coxeter complex. For an alcove $c$ of \sg, let $\mathcal{H}(c)$ be the subset of $\mathcal{H}(\Sigma)$ which separates $c$ and the fixed identity alcove 1. Now $\mathcal{H}(c)=\mathcal{H}_{\phi}^+(c)\sqcup \mathcal{H}_{\phi}^-(c)$, where $\mathcal{H}_{\phi}^+(c)$ is the subset of $\mathcal{H}(c)$ such that $c$ lies on the positive side of the walls, and similarly for $\mathcal{H}_{\phi}^-(c)$.
 \end{definition}
 
 
 \begin{definition}
-    Let $Ch(\Sigma)$ denote the set of all alcoves in \sg. The $\phi$-valuation map is the map $\textnormal{v}_\phi:\textnormal{Ch}(\Sigma)\longrightarrow\mathbb{Z}$, with
+    Let Ch$(\Sigma)$ denote the set of all alcoves in \sg. The $\phi$-valuation map is the map $\textnormal{v}_\phi:\textnormal{Ch}(\Sigma)\longrightarrow\mathbb{Z}$, with
     \[c\mapsto \textnormal{v}_\phi(c):= |\mathcal{H}_{\phi}^+(c)|-|\mathcal{H}_{\phi}^-(c)|.\]
 \end{definition}
 
@@ -584,8 +668,8 @@ We now want to relate this function to our $\phi$-valuation map.
 \end{lemma}
 
 \begin{proof}
-    We are assuming that our oritentation $\phi$ is a chamber orientation. So, in particular, this orientation is locally non-trivial. Therefore, every hyperplane $H$ has a positive and negative side. First consider when 1 and $c$ lie on the same side of $H$. Then $H$ is not an element of $\mathcal{H}(c)$. But in this case, $p_\phi(1,H)=p_\phi(c,H)$ and so this hyperplane does not contribute to the above sum. 
-    Now consider when 1 and $c$ lie on opposite sides of $H$. In this case, $H\in \mathcal{H}(c)$. If $c$ lies on the positive side of $H$, then $H\in\mathcal{H}_{\phi}^+(c)$ and $p_\phi(c,H)=1$ and $p_\phi(1,H)=0$, and so $H$ contributes $+1$ to the sum above. Similarly, if $c$ lies on the negative side of $H$, then $H\in\mathcal{H}_{\phi}^-(c)$ and $p_\phi(c,H)=0$ and $p_\phi(1,H)=1$, and so $H$ contributes $-1$ to the sum above. Therefore, we are just counting the size of $\mathcal{H}_{\phi}^+(c)$ minus the size of $\mathcal{H}_{\phi}^-(c)$, which is exactly $\textnormal{v}_\phi(c)$. 
+    We are assuming that our oritentation $\phi$ is a chamber orientation. So, in particular, this orientation is locally non-trivial and wall consistent. Therefore, every hyperplane $H$ has a positive and negative side. First consider when 1 and $c$ lie on the same side of $H$. Then $H$ is not an element of $\mathcal{H}(c)$. But, in this case, $p_\phi(1,H)=p_\phi(c,H)$ and so this hyperplane does not contribute to the above sum. 
+    Now consider when 1 and $c$ lie on opposite sides of $H$. In this case, $H\in \mathcal{H}(c)$. If $c$ lies on the positive side of $H$, then $H\in\mathcal{H}_{\phi}^+(c)$, $p_\phi(c,H)=1$ and $p_\phi(1,H)=0$, and so $H$ contributes $+1$ to the sum above. Similarly, if $c$ lies on the negative side of $H$, then $H\in\mathcal{H}_{\phi}^-(c)$, $p_\phi(c,H)=0$ and $p_\phi(1,H)=1$, and so $H$ contributes $-1$ to the sum above. Therefore, we are just counting the size of $\mathcal{H}_{\phi}^+(c)$ minus the size of $\mathcal{H}_{\phi}^-(c)$, which is exactly $\textnormal{v}_\phi(c)$. 
 \end{proof}
 
 
@@ -598,21 +682,17 @@ The next lemma comes from the trivial observation that \[|\mathcal{H}_{\phi}^+(c
     We call an alcove $c$ \ix{dominant} with respect to $\phi$ if $\textnormal{v}_\phi(c)=l(c).$
 \end{definition}
 
+The next two lemmas tell us more information about the $\phi$-valuation map. Proofs can be found in \cite{SHA}.
+
 \begin{lemma}
     \[l(x)=\max_{a\in W_0}\textnormal{v}_{\tilde{\phi}_a}(c_x).\]
 \end{lemma}
 
-\begin{proof}
-    
-\end{proof}
 
 \begin{lemma}
     Let $\phi\in$Dir$(W)$, $r\in W$ be a reflection across the hyperplane $H_r$ and $x\in W$. Then v$_\phi(x)>$v$_\phi(rx)$ if and only if $x$ lies in the $\phi$-positive side of $H_r$. 
 \end{lemma}
 
-\begin{proof}
-    
-\end{proof}
 
 \subsection{Computation of regular shadows}
 
@@ -627,8 +707,8 @@ Let Dir$(W)$ represent the set of chambers in the boundary complex $\partial\Sig
         \[\textnormal{Sh}_\phi(x)=\textnormal{Sh}_\phi(xs)\cdot s \cup \{z\in \textnormal{Sh}_\phi(xs):\textnormal{v}_\phi(zs)<\textnormal{v}_\phi(z)\}.\]
         \item If $s$ is in the left descent set $D_R(x)$ of $x$, then we have
         \[\textnormal{Sh}_\phi(x)=\begin{cases}
-            s\cdot \textnormal{Sh}_\phi(sx)\cup \textnormal{Sh}_\phi(sx) &if\textnormal{ v}_\phi(s)<0,\\
-            s\cdot \textnormal{Sh}_\phi(sx) &if \textnormal{ v}_\phi(s)>0.\\
+            s\cdot \textnormal{Sh}_{s\phi}(sx)\cup \textnormal{Sh}_\phi(sx) &if\textnormal{ v}_\phi(s)<0,\\
+            s\cdot \textnormal{Sh}_{s\phi}(sx) &if \textnormal{ v}_\phi(s)>0.\\
         \end{cases}\]
     \end{enumerate}
 \end{theorem}
@@ -643,7 +723,7 @@ Let Dir$(W)$ represent the set of chambers in the boundary complex $\partial\Sig
 Now we can use this theorem to show that the next two lemmas both give us recursive defintions for the shadow of a gallery. 
 
 \begin{lemma} (Algorithm L)
-    Let $\phi\in\textnormal{Dir}(W)$ and $x\in W$. Let $w=(s_1,...,s_n)$ be a reduced word for $x$. Let $A_0=\{1\}$ and let
+    Let $\phi\in\textnormal{Dir}(W)$ and $x\in W$. Let $w=s_1...s_n$ be a reduced word for $x$. Let $A_0=\{1\}$ and let
     \[A_i:=A_{i-1}\cdot s_i\cup \{z\in A_{i-1}|v_\phi(zs)<v_\phi(z)\}.\]
     Then $A_n=\textnormal{Sh}_\phi(x)$. 
 \end{lemma}
@@ -658,7 +738,7 @@ Now we can use this theorem to show that the next two lemmas both give us recurs
 \end{proof}
 
 \begin{lemma} (Algorithm R)
-    Let $\phi\in$ Dir$(W)$ and $x\in W$, with $(s_n,...,s_1)$ a reduced expression for $x$. Let $B_0^\phi:=\{1\}$ and define
+    Let $\phi\in$ Dir$(W)$ and $x\in W$, with $s_n...s_1$ a reduced expression for $x$. Let $B_0^\phi:=\{1\}$ and define
     \[B_i^\phi = \begin{cases}
         s_iB_{i-1}^{s_i\phi}\cup B_{i-1}^\phi & \textnormal{if v}_\phi(s_i)<0,\\
         s_iB_{i-1}^{s_i\phi} & \textnormal{if v}_\phi(s_i)>0.
@@ -667,26 +747,27 @@ Now we can use this theorem to show that the next two lemmas both give us recurs
 \end{lemma}
 
 \begin{proof}
-    Again, we can use the theorem above to prove by induction that $B^\phi_i=$Sh$_\phi(s_i...s_1)$ for all $i=0,...,n$. For $i=0$ it is trivial as Sh$_\phi(1)=\{1\}$. Now assume that $B^\phi_i=$Sh$_\phi(s_i...s_1)$ for all $i<j$. By part (ii) of the theorem, if $v(s_j)<0$, then
+    Again, we can use the theorem above to prove by induction that $B^\phi_i=$Sh$_\phi(s_i...s_1)$ for all $i=0,...,n$. For $i=0$ it is trivial, as Sh$_\phi(1)=\{1\}$. Now assume that $B^\phi_i=$Sh$_\phi(s_i...s_1)$ for all $i<j$. By part (ii) of the theorem, if $v(s_j)<0$, then
     \[\begin{aligned}
         Sh_\phi(s_j...s_1)&=s_j\cdot \textnormal{Sh}_{s_j\phi}(s_js_j...s_1)\cup \textnormal{Sh}_\phi(s_js_j...s_1)\\
                         &=  s_j\cdot \textnormal{Sh}_{s_j\phi}(s_{j-1}...s_1)\cup \textnormal{Sh}_\phi(s_{j-1}...s_1)\\
                         &= s_j\cdot B^{s_j\phi}_{j-1}\cup B^{\phi}_{j-1}\\
                         &= B^\phi_j. 
     \end{aligned}\]
-    Similarly, if $v(s_j)<0$, then
+    Similarly, if $v(s_j)>0$, then
     \[\begin{aligned}
         Sh_\phi(s_j...s_1)& = s_j\cdot \textnormal{Sh}_{s_j\phi}(s_js_j...s_1)\\
                         & = s_j\cdot \textnormal{Sh}_{s_j\phi}(s_{j-1}...s_1)\\
                         & = s_j \cdot B^{s_j\phi}_{j-1}\\
-                        & = B^{s_j\phi}_{j}. 
+                        & = B^{\phi}_{j}. 
     \end{aligned}\]
 \end{proof}
 
 
 
-
+\newpage
 \bibliographystyle{plain}
+\nocite{*}
 \bibliography{references}
 
 \end{document}

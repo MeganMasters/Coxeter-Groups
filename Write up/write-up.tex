@@ -303,26 +303,32 @@ Some key properties of buildings are as follows:
     Any $J$-residue is a building of type $M_J$. 
 \end{theorem}
 
-\begin{theorem}
-    Any isometry from a subset of $W$ into $\Delta$ can be extended to an isometry of $W$ into $\Delta$.
+\begin{proof}
+    We note that we only need to show that the $W_J$-distance function is well-defined, as the other properties of a building are obvious. So in particular, we need to show that $\delta(x,y)\in W_J$ for all $x,y$ in the same $J$-residue. Consider a shortest $J$-gallery $\gamma$ between $x$ and $y$, and let $f$ be its type. THen $F$ is a word in $\{s_i|i\in J\}$. Assume that $f$ is not reduced. Then $f$ must be homotopic to some shorter word $g$ in $\{s_i|i\in J\}$. So by our sixth observation above, there must be a gallery from $x$ to $y$ with type $g$. This contradicts $\gamma$ being a shortest $J$-gallery between $x$ and $y$. So $F$ is reduced, and hence $\delta(x,y)\in W_J$. 
+\end{proof}
+
+
+The next theorem allows us to conclude that any two chambers have a common apartment. The proof of this theorem can be found in \cite[p.31]{RON}.
+
+\begin{theorem}\label{isometry}
+   Any isometry from a subset of $W$ into $\Delta$ can be extended to an isometry of $W$ into $\Delta$.
 \end{theorem}
+
 
 \begin{corollary}
     Any two chambers lie in a common apartment.
 \end{corollary}
 
-\begin{theorem}
-    Apartments are convex.
-\end{theorem}
-
+%\begin{theorem}
+  %  Apartments are convex.
+%\end{theorem}
 
 \section{Retractions of buildings}
 
-
-\tr{This section needs rewriting.}
+%Now we can use theorem \eqref{isometry} to define retractions of a building. These are maps from the building to one apartment. By theorem \eqref{isometry}, we can see that an isometry from $W$ to a building $\Delta$ is uniquely determined its image and where the identity element $1\in W$ is sent. So 
 
 \begin{definition}
-    Let $A$ be a chosen apartment in a building $X$, and let $c\in A$ be an alcove. We define the \ix{retraction from X to A based at c} as the map $r_{A,c}:X\longrightarrow A$ where we send any alcove $d$ to its image under the isomorphism from the apartment containing both $c$ and $d$ to $A$. 
+    Let $A$ be a chosen apartment in a building $X$, and let $c\in A$ be an alcove. We define the \ix{retraction from X to A based at c} as the map $r_{A,c}:X\longrightarrow A$ where we send any alcove $d$ to the unique alcove $e$ in $A$ such that $\delta(c,d)=\delta_A(c,e)$. 
 \end{definition}
 
 \includegraphics[scale=0.7]{Screenshot 2023-02-15 at 13.32.45.png}\\
@@ -630,6 +636,8 @@ Now this proposition is telling us that actually both the trivial positive orien
 \begin{example}
     The picture above shows the shadow for an alcove of a Coxeter complex of type $\tilde{A}_2$, with respect to the trivial positive orientation. By the proposition above, this is also the shadow with respect to the alcove orientation towards 1. Furthermore, the alcoves in this shadow are all the elements $y$ of the Coxeter group such that $y\leq x$ with respect to the Bruhat ordering, and so it is the Bruhat interval $[1,x]$. 
 \end{example}
+
+\subsection{Retractions and shadows}
 
 
 \section{Progress on calculating shadows}

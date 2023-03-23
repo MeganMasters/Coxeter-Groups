@@ -1,0 +1,17 @@
+
+Structure of presentation:
+
+- define Coxeter groups 2 mins
+- define Coxeter complexes/buildings (lots of pictures) 3 mins
+- define orientations 2 mins
+- define shadows 4 mins
+- play around with shadows 5 mins
+- motivation for studying shadows 3 mins
+- big question! 1 min
+- progress so far 5 mins
+- tools I might use 5 mins
+
+Total: 30 minutes
+
+
+
